@@ -23,7 +23,8 @@ class User(db.Model, SerializerMixin):
     last_name = db.Column(db.String)
     phone_number = db.Column(db.Integer)
     email = db.Column(db.String)
-
+    appts = db.relationship('Appointment', backref = 'user')
+    serialize_rules=('-appts',)
 
 class Car(db.Model, SerializerMixin):
     __tablename__ = 'cars'
@@ -33,13 +34,19 @@ class Car(db.Model, SerializerMixin):
     model = db.Column(db.String)
     year = db.Column(db.Integer)
     engine = db.Column(db.String)
+    appts = db.relationship('Appointment', backref='car')
+    serialize_rules=('-appts',)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
 
 class Appointment(db.Model, SerializerMixin):
     __tablename__ = 'appointments'
 
     id = db.Column(db.Integer, primary_key=True)
+    date = db.Column(db.String)
     time = db.Column(db.Integer)
     payment = db.Column(db.Integer)
     type_of_service = db.Column(db.String)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    car_id = db.Column(db.Integer, db.ForeignKey('cars.id'))
 
