@@ -23,5 +23,19 @@ api=Api(app)
 def home():
     return 'HELLO WORLD'
 
+class Users(Resource):
+    def get(self):
+        users = User.query.all()
+        users_ser = [user.to_dict() for user in users]
+        return make_response(users_ser, 200)
+api.add_resource(Users,'/users')
+
+class Cars(Resource):
+    def get(self):
+        cars = Car.query.all()
+        cars_ser =[car.to_dict() for car in cars]
+        return make_response(cars_ser, 200)
+api.add_resource(Cars, '/cars')
+
 if __name__ == "__main__":
     app.run(port=5555, debug = True )
