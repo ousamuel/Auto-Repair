@@ -36,19 +36,10 @@ export default async function Hello(){
 
   return (
     <div className="container">
-      <header className="header">
-        <div className="logo">Darren's Detail</div>
-        <nav className="navigation">
-          <a href="#">HOME</a>
-          <a href="#">GALLERY</a>
-          <a href="#">SERVICES</a>
-          <a href="#">APPOINTMENT</a>
-          <a href="#">CONTACT US</a>
-        </nav>
-      </header>
+      
       <section className="main-content">
         <img src="/images/car.jpg" alt="Descriptive text" className="background-image" />
-        <div className="centered-text">Your Text Here</div>
+        <div className="centered-text">WELCOME TO THE AUTO SHOP</div>
       </section>
     </div>
   )
