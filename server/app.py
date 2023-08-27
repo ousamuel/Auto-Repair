@@ -37,5 +37,24 @@ class Cars(Resource):
         return make_response(cars_ser, 200)
 api.add_resource(Cars, '/cars')
 
+class Appointments(Resource):
+    def post(self):
+        data = request.get_json()
+        new_appt = Appointment(
+            date = data['date'],
+            time = data['time'],
+            payment = data['payment'],
+            type_of_service=data['type_of_service'],
+            
+        )
+    # date = db.Column(db.String)
+    # time = db.Column(db.Integer)
+    # payment = db.Column(db.Integer)
+    # type_of_service = db.Column(db.String)
+    # user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    # car_id = db.Column(db.Integer, db.ForeignKey('cars.id'))
+api.add_resource(Appointments, '/appointments')
+
+
 if __name__ == "__main__":
     app.run(port=5555, debug = True )
