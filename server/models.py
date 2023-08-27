@@ -21,10 +21,11 @@ class User(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String)
     last_name = db.Column(db.String)
-    phone_number = db.Column(db.Integer)
-    email = db.Column(db.String)
-    appts = db.relationship('Appointment', backref = 'user')
-    serialize_rules=('-appts',)
+    phone_number = db.Column(db.Integer, unique = True)
+    email = db.Column(db.String, unique = True)
+    password = db.Column(db.String, nullable = False)
+    appointments = db.relationship('Appointment', cascade = 'all,delete',backref = 'user')
+    serialize_rules=('-appointments.user',)
 
 class Car(db.Model, SerializerMixin):
     __tablename__ = 'cars'
@@ -34,8 +35,8 @@ class Car(db.Model, SerializerMixin):
     model = db.Column(db.String)
     year = db.Column(db.Integer)
     engine = db.Column(db.String)
-    appts = db.relationship('Appointment', backref='car')
-    serialize_rules=('-appts',)
+    appointments = db.relationship('Appointment',cascade = 'all,delete',backref='car')
+    serialize_rules=('-appointments.car',)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
 
@@ -49,4 +50,5 @@ class Appointment(db.Model, SerializerMixin):
     type_of_service = db.Column(db.String)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     car_id = db.Column(db.Integer, db.ForeignKey('cars.id'))
+    serialize_rules = ('-car.appointments', '-user.appointments',)
 
