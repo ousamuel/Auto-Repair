@@ -12,7 +12,22 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <head>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&display=swap"/>
+      </head>
+      <body className={inter.className}>
+      <header className="header">
+        <div className="logo">DARREN'S DETAIL</div>
+        <nav className="navigation">
+          <a href="/dashboard">HOME</a>
+          <a href="/gallery">GALLERY</a>
+          <a href="/services">SERVICES</a>
+          <a href="/appointment">APPOINTMENT</a>
+          <a href="/contact-us">CONTACT US</a>
+        </nav>
+      </header>
+        {children}</body>
+      
     </html>
   )
 }
