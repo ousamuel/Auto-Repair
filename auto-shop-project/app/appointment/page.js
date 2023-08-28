@@ -19,10 +19,15 @@ export default function Appointment() {
   const [year, setYear] = useState("");
   const [engine, setEngine] = useState(null);
   const [date, setDate] = useState(today);
-  const [time, setTime] = useState('08:00')
+  const [time, setTime] = useState("08:00");
+  const [service, setService] = useState("");
+
+  // const
   function handleSubmit(e) {
     e.preventDefault();
-    pass;
+    alert(
+      "Appointment successfully scheduled \n Contact us via email at ___ with any questions."
+    );
   }
   // const newBeer = {
   //   name: newUser.value,
@@ -47,7 +52,7 @@ export default function Appointment() {
   // });
   // style={{ backgroundImage: 'url(/images/accord1.jpg)', backgroundPosition: 'center', height:'70vw'}}
   return (
-    <div >
+    <div>
       <h1 className="route-head" style={{}}>
         SCHEDULE AN APPOINTMENT
       </h1>
@@ -121,12 +126,12 @@ export default function Appointment() {
             />
           </div>
           <div className="submit-box">
-            Engine (optional)
+            Engine
             <input
               className="input-box"
               onChange={(e) => setEngine(e.target.value)}
               type="text"
-              placeholder="e.g. 252HP Turbo V4"
+              placeholder="(optional) e.g. flat-four boxer"
             />
           </div>
           <div className="submit-box">
@@ -141,8 +146,13 @@ export default function Appointment() {
             />
           </div>
           <div className="submit-box">
-            <label htmlFor='time'>Select a time:</label>
-            <select id="time" name="time" value={time} onChange={(e)=>setTime(e.target.value)}>
+            <label htmlFor="time">Select a time:</label>
+            <select
+              id="time"
+              name="time"
+              value={time}
+              onChange={(e) => setTime(e.target.value)}
+            >
               <option value="08:00">08:00 AM</option>
               <option value="09:00">09:00 AM</option>
               <option value="10:00">10:00 AM</option>
@@ -154,6 +164,53 @@ export default function Appointment() {
             </select>
           </div>
         </div>
+        <h1 className="contact-subheader">TYPE OF SERVICE</h1>
+        <div className="submit-container">
+          <div className="submit-box">
+            <ul style={{ border: "solid", fontSize: "22px" }}>
+              <li>
+                <input
+                  type="checkbox"
+                  id="option1"
+                  name="option"
+                  value="option1"
+                />
+                <label className="service-li" htmlFor="option1">
+                  Oil Change
+                </label>
+              </li>
+              <li>
+                <input
+                  type="checkbox"
+                  id="option2"
+                  name="option"
+                  value="option2"
+                />
+                <label className="service-li" htmlFor="option2">
+                  Brake Repair
+                </label>
+              </li>
+              <li>
+                <input
+                  type="checkbox"
+                  id="option3"
+                  name="option"
+                  value="option3"
+                />
+                <label className="service-li" htmlFor="option3">
+                  Detailing
+                </label>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <h1 className="contact-subheader">Notes</h1>
+        <div className="submit-container">
+          <div className="submit-box">
+            <textarea id='message-box' type='text' placeholder="Leave us any questions or concerns you may have here"/>
+          </div>
+        </div>
+        <button id="appt-button">MAKE APPOINTMENT</button>
       </form>
     </div>
   );

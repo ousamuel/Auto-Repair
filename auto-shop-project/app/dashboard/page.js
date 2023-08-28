@@ -24,7 +24,7 @@ async function getCars() {
 export default async function Hello(){
   const users = await getUsers()
   const cars = await getCars()
-  console.log(users)
+  // console.log(users)
   
   const userList = users.map(user =>{
     return <div key={user.id}>{user.first_name} {user.last_name} </div>
@@ -39,7 +39,8 @@ export default async function Hello(){
       
       <section className="main-content">
         <img src="/images/car.jpg" alt="Descriptive text" className="background-image" />
-        <div className="centered-text">WELCOME TO THE AUTO SHOP</div>
+        <div className="centered-text">WELCOME TO THE AUTO SHOP
+        <br/> PRECISION CARE FOR YOUR VEHICLE</div>
       </section>
     </div>
   )
