@@ -1,4 +1,6 @@
+"use client"
 import Image from 'next/image'
+
 async function getUsers() {
   try {
     const res = await fetch('http://127.0.0.1:5555/users')
@@ -20,17 +22,6 @@ async function getCars() {
   } catch (err) {
     console.log(err);
   }
-
-
-// COOKKIEE SESSSIONSSS
-useEffect(() => {
-  fetch('http://127.0.0.1:5555/users/current', {
-      credentials: 'include'
-  })
-  .then(response => response.json())
-  .then(data => setUser(data))
-  .catch(error => console.error('Error fetching user data:', error));
-}, []);
 
 
 

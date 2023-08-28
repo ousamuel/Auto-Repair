@@ -21,6 +21,21 @@ export default function Appointment() {
   const [time, setTime] = useState("08:00");
   const [service, setService] = useState("");
 
+  const [user, setUser] = useState('');
+
+  useEffect(() => {
+      fetch('http://127.0.0.1:5555/users/current', {
+          credentials: 'include'
+      })
+      .then(response => response.json())
+      .then(data => setUser(data))
+      .catch(error => console.error('Error fetching user data:', error));
+  }, []);
+
+
+
+
+
   // const
   function handleSubmit(e) {
     e.preventDefault();

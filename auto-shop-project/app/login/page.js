@@ -33,7 +33,7 @@ const router = useRouter()
     .then(response => response.json())
     .then(json => SetUser(json))
     .then(() => {
-      router.push('/test');
+      router.push('/dashboard');
     })
     }
   }
