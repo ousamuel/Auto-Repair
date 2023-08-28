@@ -9,5 +9,5 @@ pip install sqlalchemy_serializer
 pip install flask_restful
 pip install flask_migrate
 pip install flask_sqlalchemy
-pip install flask_session
-pip install axios
+pip install flask-session
+pip install cors

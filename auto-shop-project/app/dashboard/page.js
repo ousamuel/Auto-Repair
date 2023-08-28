@@ -20,6 +20,20 @@ async function getCars() {
   } catch (err) {
     console.log(err);
   }
+
+
+// COOKKIEE SESSSIONSSS
+useEffect(() => {
+  fetch('http://127.0.0.1:5555/users/current', {
+      credentials: 'include'
+  })
+  .then(response => response.json())
+  .then(data => setUser(data))
+  .catch(error => console.error('Error fetching user data:', error));
+}, []);
+
+
+
 }
 export default async function Hello(){
   const users = await getUsers()
