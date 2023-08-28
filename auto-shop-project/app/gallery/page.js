@@ -1,4 +1,5 @@
 'use client'
+import { useState, useEffect } from "react";
 export default function Gallery(){
   const image_srcs = [
     '/images/accord.jpg',
@@ -10,6 +11,16 @@ export default function Gallery(){
     '/images/subie2.jpg',
     '/images/subie3.jpg',
   ]
+  const [user, setUser] = useState('');
+
+  useEffect(() => {
+      fetch('http://127.0.0.1:5555/users/current', {
+          credentials: 'include'
+      })
+      .then(response => response.json())
+      .then(data => setUser(data))
+      .catch(error => console.error('Error fetching user data:', error));
+  }, []);
   function handleClick(e){
     console.log(e.target)
     //messing around with giving images a click function

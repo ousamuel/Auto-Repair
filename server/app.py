@@ -2,6 +2,7 @@ from models import db, User, Car, Appointment
 from flask_restful import Api, Resource
 from flask_migrate import Migrate
 from flask import Flask, make_response, jsonify, request, render_template, redirect, session
+from flask_cors import CORS as FlaskCors
 from flask_session import Session
 import os
 
@@ -16,7 +17,13 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.json.compact = False
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
+app.config["SESSION_COOKIE_SECURE"] = True
+app.config["SESSION_COOKIE_SAMESITE"] = "None"
+app.config["SESSION_COOKIE_PATH"] = "/"
+
+
 Session(app)
+cors = FlaskCors(app, origins=["http://localhost:3000"], supports_credentials=True)
 
 migrate = Migrate(app, db)
 
@@ -68,13 +75,14 @@ class Login(Resource):
         if user.password != password:
             return make_response({"error":"Invalid email or password"})
         if user.password == password and user.email == email:
-            session['user.id'] = request.form.get("user.id")
+            session['user_id'] = user.id,
+            session['user_name'] = user.first_name
             return make_response({
                 "id":user.id,
-                "email":user.email
-            },200) and redirect("/")
+                "email":user.email,
+                "name": user.first_name
+            },200)
         
-
 api.add_resource(Login, '/login')
 class Appointments(Resource):
     def post(self):
@@ -94,6 +102,19 @@ class Appointments(Resource):
     # car_id = db.Column(db.Integer, db.ForeignKey('cars.id'))
 api.add_resource(Appointments, '/appointments')
 
+class GetCurrent(Resource):
+    def get(self):
+        user_id = session.get('user_id')
+        if not user_id:
+            return make_response({'error': "User not authenticated"}, 400)
+        
+        user = User.query.get(user_id)
+        if not user:
+            return make_response({'errors':'User not found'}, 400)
+        
+        user_dict = user.to_dict()
+        return make_response(user_dict, 200)
+api.add_resource(GetCurrent, '/users/current')
 
 if __name__ == "__main__":
     app.run(port=5555, debug = True )

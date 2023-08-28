@@ -1,3 +1,4 @@
+README
 To set up and clone this repo:
 1. git clone 
 2. run bash setup.sh to install all required dependecies

@@ -1,30 +1,55 @@
+"use client";
+
+
 import React, { useState } from 'react'
-export const login = () => {
+import { useRouter } from 'next/navigation';
+
+export default function login() {
 const [email, setEmail] = useState('')
 const [password, setPassword] = useState('')
+const [user, SetUser] = useState(null)
+const router = useRouter()
+  const handleFormSubmit = async (e) => {
+  e.preventDefault()
 
   if (email.length === 0){
-    alert("Email has been left blank");
+    return ("Email has been left blank");
   }
   else if(password.length === 0){
-    alert("password has left blank")
+    return ("password has left blank")
   }
   else{
-    axios.post('/login')
+    fetch('http://127.0.0.1:5555/login', {
+      method: "POST",
+      credentials:"include",
+      headers:{
+        "Content-Type": "application/json; charset=UTF-8"
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password
+      }),
+    })
+    .then(response => response.json())
+    .then(json => SetUser(json))
+    .then(() => {
+      router.push('/test');
+    })
+    }
   }
-
   return (
   <>
     <h1>login</h1>
-      <form>
+      <form onSubmit={handleFormSubmit}>
         <label>Email:
-          <input type="text" />
+          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
         </label>
         <label>Password:
-          <input type = 'text'/>
+          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
         </label>
+        <button type='submit'>Submit</button>
       </form>
   </>
   )
 }
-export default login
+
