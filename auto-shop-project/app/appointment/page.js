@@ -66,7 +66,7 @@ export default function Appointment() {
   // });
   // style={{ backgroundImage: 'url(/images/accord1.jpg)', backgroundPosition: 'center', height:'70vw'}}
   return (
-    <div>
+    <div style={{fontFamily: "'Oswald', sans-serif", backgroundImage: 'url("/images/tires.jpg")'}}>
       <h1 className="route-head" style={{}}>
         SCHEDULE AN APPOINTMENT
       </h1>
@@ -221,7 +221,7 @@ export default function Appointment() {
         <h1 className="contact-subheader">Notes</h1>
         <div className="submit-container">
           <div className="submit-box">
-            <textarea id='message-box' type='text' placeholder="Leave us any questions or concerns you may have here"/>
+            <textarea id='message-box' type='text' placeholder="Let us know if you have any questions or concerns!"/>
           </div>
         </div>
         <button id="appt-button">MAKE APPOINTMENT</button>

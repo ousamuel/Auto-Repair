@@ -14,7 +14,7 @@ function Test() {
     }, []);
     return (
         <div>
-            <h1>Welcome, {user.appointments.car.engine}</h1>
+            <h1>Welcome, {user.first_name}</h1>
         </div>
     );
 }

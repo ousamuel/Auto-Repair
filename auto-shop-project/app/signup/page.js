@@ -1,10 +1,7 @@
-"use client";
 
-import React from 'react'
-export const register = () => {
-
-  return (
-  <>
+export default function Signup(){
+  return(
+    <>
     <h1>Register</h1>
       <form>
         <label>First Name:
@@ -26,4 +23,3 @@ export const register = () => {
   </>
   )
 }
-export default register
