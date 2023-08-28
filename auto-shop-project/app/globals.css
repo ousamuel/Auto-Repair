@@ -47,7 +47,11 @@ body {
   font-size: 50px;
   text-align: center;
   padding-top: 40px;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: rgb(0, 0, 0);
+
 }
+
 .contact-subheader{
   font-size:23px;
   background-color: rgb(188, 185, 185);
@@ -84,6 +88,8 @@ body {
   padding: 15px;
   /* border:solid; */
   border-color: red;
+  
+  
 
 }
 .input-box{
@@ -91,7 +97,7 @@ body {
   margin-left: 15px;
   background-color:rgb(230, 230, 230);
   float:right;
-  height:40px;
+  height:35px;
   border-radius:5px;
   font-weight:250;
   padding-left:7px;
@@ -116,7 +122,6 @@ body {
 }
 .service-li{
   margin-left: 7px;
-  
 }
 .service-li:hover{
   margin-left: 7px;
@@ -202,3 +207,14 @@ body {
   align-items: center;
   justify-content: center;
 }
+
+.links{
+  text-decoration: underline;
+}
+.links:hover{
+  color: rgb(91, 91, 249);
+}
+
+/* .links:visited{
+  color:blueviolet;
+} */
