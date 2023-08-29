@@ -28,7 +28,10 @@ export default function RootLayout({ children }) {
           <a href="/login">ACCOUNT</a>
         </nav>
       </header>
-        {children}</body>
+      <div style={{paddingTop: "70px"}}>
+        {children}
+      </div>
+        </body>
       
     </html>
   )
