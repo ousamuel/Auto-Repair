@@ -1,97 +1,95 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useFormik } from "formik";
 
 export default function Appointment() {
   let today = new Date();
   let timeAhead = new Date(today);
   timeAhead.setMonth(today.getMonth() + 2);
-  // whatever value is added here is how many months ahead the appt can go
   today = today.toISOString().slice(0, 10);
   timeAhead = timeAhead.toISOString().slice(0, 10);
 
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [make, setMake] = useState("");
-  const [model, setModel] = useState("");
-  const [year, setYear] = useState("");
-  const [engine, setEngine] = useState(null);
-  const [date, setDate] = useState(today);
-  const [time, setTime] = useState("08:00");
-  const [service, setService] = useState("");
-
-  // const
-  function handleSubmit(e) {
-    e.preventDefault();
-    alert(
-      "Appointment successfully scheduled \n Contact us via email at ___ with any questions."
-    );
-  }
-  // const newBeer = {
-  //   name: newUser.value,
-  //   tagline: newTitle.value,
-  //   description: newDescription.value,
-  //   image_url: newImage.value,
-  //   likes: 0,
-  //   time: newPostTime,
-  //   saved: false,
-  // };
-
-  // postBeer(newBeer);
-  // allBeers.push(newBeer);
-
-  // fetch(`http://localhost:5555/appointments/`, {
-  //   method: "POST",
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //     Accept: "application/json",
-  //   },
-  //   body: JSON.stringify(newBeer),
-  // });
-  // style={{ backgroundImage: 'url(/images/accord1.jpg)', backgroundPosition: 'center', height:'70vw'}}
+  const formik = useFormik({
+    initialValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      phoneNumber: "",
+      make: "",
+      model: "",
+      year: "",
+      engine: "",
+      plateNumber:"",
+      date: today,
+      time: "08:00",
+      service: [],
+      notes: "",
+    },
+    onSubmit: (values) => {
+      alert(
+        "Appointment successfully scheduled \n Contact us via email at ___ with any questions."
+      );
+    },
+  });
+  console.log(formik);
   return (
-    <div style={{fontFamily: "'Oswald', sans-serif", backgroundImage: 'url("/images/tires.jpg")', backgroundRepeat:'no-repeat', backgroundPosition:'center center', backgroundAttachment:'fixed'}}>
-      <h1 className="route-head" style={{}}>
-        SCHEDULE AN APPOINTMENT
-      </h1>
-      <form id="form-box" onSubmit={handleSubmit}>
+    <div
+      style={{
+        height: "100vw",
+        paddingBottom: "60px",
+        fontFamily: "'Oswald', sans-serif",
+        backgroundImage: 'url("/images/tires.jpg")',
+        // backgroundRepeat: "no-repeat",
+        backgroundPosition: "center center",
+        backgroundAttachment: "fixed",
+        backgroundSize: "cover",
+      }}
+    >
+      <h1 className="route-head">SCHEDULE AN APPOINTMENT</h1>
+      <form id="form-box" onSubmit={formik.handleSubmit}>
         <h1 className="contact-subheader">CONTACT INFORMATION</h1>
         <div className="submit-container">
           <div className="submit-box">
             First Name
             <input
               className="input-box"
-              onChange={(e) => setFirstName(e.target.value)}
+              name="firstName"
               type="text"
               placeholder="e.g. Elvis"
+              onChange={formik.handleChange}
+              value={formik.values.firstName}
             />
           </div>
           <div className="submit-box">
             Last Name
             <input
               className="input-box"
-              onChange={(e) => setLastName(e.target.value)}
+              name="lastName"
               type="text"
               placeholder="e.g. Presley"
+              onChange={formik.handleChange}
+              value={formik.values.lastName}
             />
           </div>
           <div className="submit-box">
             Email
             <input
               className="input-box"
-              onChange={(e) => setEmail(e.target.value)}
+              name="email"
               type="text"
               placeholder="e.g. elvispresley88@gmail.com"
+              onChange={formik.handleChange}
+              value={formik.values.email}
             />
           </div>
           <div className="submit-box">
             Phone Number
             <input
               className="input-box"
-              onChange={(e) => setPhoneNumber(e.target.value)}
+              name="phoneNumber"
               type="text"
-              placeholder="e.g. 123-456-7890"
+              placeholder="(optional) e.g. 123-456-7890"
+              onChange={formik.handleChange}
+              value={formik.values.phoneNumber}
             />
           </div>
         </div>
@@ -101,7 +99,9 @@ export default function Appointment() {
             Make
             <input
               className="input-box"
-              onChange={(e) => setMake(e.target.value)}
+              name="make"
+              value={formik.values.make}
+              onChange={formik.handleChange}
               type="text"
               placeholder="e.g. Honda"
             />
@@ -110,7 +110,9 @@ export default function Appointment() {
             Model
             <input
               className="input-box"
-              onChange={(e) => setModel(e.target.value)}
+              name="model"
+              value={formik.values.model}
+              onChange={formik.handleChange}
               type="text"
               placeholder="e.g. Accord"
             />
@@ -118,28 +120,44 @@ export default function Appointment() {
           <div className="submit-box">
             Year
             <input
+              name="year"
               className="input-box"
-              onChange={(e) => setYear(e.target.value)}
               type="text"
               placeholder="e.g. 2022"
+              value={formik.values.year}
+              onChange={formik.handleChange}
             />
           </div>
           <div className="submit-box">
             Engine
             <input
+              name="engine"
               className="input-box"
-              onChange={(e) => setEngine(e.target.value)}
               type="text"
               placeholder="(optional) e.g. flat-four boxer"
+              value={formik.values.engine}
+              onChange={formik.handleChange}
+            />
+          </div>
+          <div className="submit-box">
+            Plate Number
+            <input
+              name="plateNumber"
+              className="input-box"
+              type="text"
+              placeholder="e.g. ABC1234"
+              value={formik.values.plateNumber}
+              onChange={formik.handleChange}
             />
           </div>
           <div className="submit-box">
             Date
             <input
+              name="date"
               className="input-box"
-              onChange={(e) => setDate(e.target.value)}
+              onChange={formik.handleChange}
+              value={formik.values.date}
               type="date"
-              value={date}
               min={today}
               max={timeAhead}
             />
@@ -149,8 +167,8 @@ export default function Appointment() {
             <select
               id="time"
               name="time"
-              value={time}
-              onChange={(e) => setTime(e.target.value)}
+              onChange={formik.handleChange}
+              value={formik.values.time}
             >
               <option value="08:00">08:00 AM</option>
               <option value="09:00">09:00 AM</option>
@@ -171,8 +189,10 @@ export default function Appointment() {
                 <input
                   type="checkbox"
                   id="option1"
-                  name="option"
-                  value="option1"
+                  name="service"
+                  value="Oil Change"
+                  checked={formik.values.service.includes("Oil Change")}
+                  onChange={formik.handleChange}
                 />
                 <label className="service-li" htmlFor="option1">
                   Oil Change
@@ -182,8 +202,10 @@ export default function Appointment() {
                 <input
                   type="checkbox"
                   id="option2"
-                  name="option"
-                  value="option2"
+                  name="service"
+                  value="Brake Repair"
+                  checked={formik.values.service.includes("Brake Repair")}
+                  onChange={formik.handleChange}
                 />
                 <label className="service-li" htmlFor="option2">
                   Brake Repair
@@ -193,8 +215,10 @@ export default function Appointment() {
                 <input
                   type="checkbox"
                   id="option3"
-                  name="option"
-                  value="option3"
+                  name="service"
+                  value="Detailing"
+                  checked={formik.values.service.includes("Detailing")}
+                  onChange={formik.handleChange}
                 />
                 <label className="service-li" htmlFor="option3">
                   Detailing
@@ -206,10 +230,19 @@ export default function Appointment() {
         <h1 className="contact-subheader">Notes</h1>
         <div className="submit-container">
           <div className="submit-box">
-            <textarea id='message-box' type='text' placeholder="Let us know if you have any questions or concerns!"/>
+            <textarea
+              name='notes'
+              id="message-box"
+              type="text"
+              value={formik.values.notes}
+              onChange={formik.handleChange}
+              placeholder="Let us know if you have any questions or concerns!"
+            />
           </div>
         </div>
-        <button id="appt-button">MAKE APPOINTMENT</button>
+        <button id="appt-button" type="submit">
+          MAKE APPOINTMENT
+        </button>
       </form>
     </div>
   );

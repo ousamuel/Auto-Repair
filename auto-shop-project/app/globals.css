@@ -203,14 +203,15 @@ body {
 
 .service-block {
   width: 100%;
-  /* border-bottom: solid; */
-  border-style:dashed;
-  /* border-color: red; */
+  border-bottom: solid;
+  border-style: dashed;
+  border-color: red;
   height: calc(100vh - 70px);
   min-height: 400px;
   display: flex;
-  /* align-items: center;
-  justify-content: center; */
+  
+  scroll-snap-align: center;
+
 }
 .service-text {
   width: 50%;
@@ -221,10 +222,14 @@ body {
   justify-content: center;
   background-color: black;
   color: white;
+  text-align:center;
+}
+.service-body-text{
+  width:80%;
 }
 
 .service-image-div {
-  background-color:black;
+  background-color: black;
   width: 50%;
   height: 100%;
   display: flex;
@@ -232,7 +237,7 @@ body {
   justify-content: center;
 }
 .service-image {
-  height: 80%;
+  height: 75%;
   width: 95%;
   border-radius: 4px;
 }
@@ -246,3 +251,8 @@ body {
 /* .links:visited{
   color:blueviolet;
 } */
+h2{
+  font-size:30px;
+  margin-top:10px;
+  text-decoration: underline;
+}

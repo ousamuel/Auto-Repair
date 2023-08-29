@@ -27,6 +27,7 @@ class User(db.Model, SerializerMixin):
     appointments = db.relationship('Appointment', cascade = 'all,delete',backref = 'user')
     serialize_rules=('-appointments.user',)
 
+
 class Car(db.Model, SerializerMixin):
     __tablename__ = 'cars'
 

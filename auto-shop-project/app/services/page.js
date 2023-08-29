@@ -1,16 +1,20 @@
-
 export default function Services() {
   return (
-    <div style={{ fontFamily: "'Oswald', sans-serif" }}>
-
+    <div
+      style={{
+        fontFamily: "'Oswald', sans-serif",
+        scrollSnapType: "y proximity",
+        overflowY: "scroll",
+      }}
+    >
       <div className="service-block">
         <div className="service-text">
           <h1 className="service-header">OIL CHANGE</h1>
-          <div>
-            blah blah blahblah blah blahblah blah blahblah blah blahblah blah
-            blahblah blah blah
+          <div className="service-body-text">
+            Regular oil changes are commonly recommended every 4000-6000 miles. 
           </div>
-          <div> FILTER REPLACEMENT</div>
+          <div> NEW FILTER</div>
+          <div> NEW OIL</div>
           <div> blahbalsdasodnaasdpdjasjdakjdasjdoajdsa</div>
         </div>
         <div className="service-image-div">
@@ -24,18 +28,23 @@ export default function Services() {
         </div>
         <div className="service-text">
           <h1 className="service-header">BRAKE REPLACEMENT</h1>
-          <div>
-            blah blah blahblah blah blahblah blah blahblah blah blahblah blah
-            blahblah blah blah
+          <div className="service-body-text">
+            Ensuring that your brakes are in top condition is not just essential
+            for the longevity of your car, but also for the safety of you and
+            your passengers.
           </div>
-          <div> BREMBOOOOOOOOS</div>
-          <div> blahbalsdasodnaasdpdjasjdakjdasjdoajdsa</div>
+          <h2>SIGNS YOU NEED NEW BRAKES/BRAKE PADS </h2>
+          <ol>
+            <li>• soft/spongy braking</li>
+            <li>• squeaking/grinding noise</li>
+            <li>• increased stopping distance</li>
+          </ol>
         </div>
       </div>
       {/*  */}
       <div className="service-block">
         <div className="service-text">
-          <h1 className="service-header">DETAILING</h1>
+          <h1 className="service-header">EXTERIOR</h1>
           <div>
             blah blah blahblah blah blahblah blah blahblah blah blahblah blah
             blahblah blah blah
@@ -45,6 +54,21 @@ export default function Services() {
         </div>
         <div className="service-image-div">
           <img src="/images/exterior.jpg" className="service-image" />
+        </div>
+      </div>
+      {/*  */}
+      <div className="service-block">
+        <div className="service-image-div">
+          <img src="/images/exterior.jpg" className="service-image" />
+        </div>
+        <div className="service-text">
+          <h1 className="service-header">INTERIOR</h1>
+          <div>
+            blah blah blahblah blah blahblah blah blahblah blah blahblah blah
+            blahblah blah blah
+          </div>
+          <div> CLEAN</div>
+          <div> blahbalsdasodnaasdpdjasjdakjdasjdoajdsa</div>
         </div>
       </div>
       {/*  */}
