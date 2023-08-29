@@ -116,5 +116,28 @@ class GetCurrent(Resource):
         return make_response(user_dict, 200)
 api.add_resource(GetCurrent, '/users/current')
 
+class Signup(Resource):
+    def post(self):
+        user = User()
+        data = request.get_json()
+        for attr in data:
+            setattr(user, attr, data[attr])
+        db.session.add(user)
+        db.session.commit()
+        return make_response(user, 200)
+api.add_resource(Signup, '/signup')
+# LOGOUT OPTIONAL
+class Logout(Resource):
+    
+    def delete(self):
+        
+        if session.get('user_id'):
+            
+            session['user_id'] = None
+            
+            return {}, 204
+        
+        return {'error': '401 Unauthorized'}, 401
+
 if __name__ == "__main__":
     app.run(port=5555, debug = True )
