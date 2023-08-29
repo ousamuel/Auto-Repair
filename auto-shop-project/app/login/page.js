@@ -10,7 +10,6 @@ export default function login() {
   const router = useRouter();
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-
     if (email.length === 0) {
       return "Email has been left blank";
     } else if (password.length === 0) {
@@ -28,8 +27,8 @@ export default function login() {
         }),
       })
         .then((response) => response.json())
-        .then((json) => SetUser(json))
-        .then(() => {
+        .then((json) => {
+          SetUser(json);
           router.push("/test");
         });
     }
