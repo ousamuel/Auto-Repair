@@ -66,7 +66,7 @@ export default function Appointment() {
   // });
   // style={{ backgroundImage: 'url(/images/accord1.jpg)', backgroundPosition: 'center', height:'70vw'}}
   return (
-    <div style={{fontFamily: "'Oswald', sans-serif", backgroundImage: 'url("/images/tires.jpg")'}}>
+    <div style={{fontFamily: "'Oswald', sans-serif", backgroundImage: 'url("/images/tires.jpg")', backgroundRepeat:'no-repeat', backgroundPosition:'center center', backgroundAttachment:'fixed'}}>
       <h1 className="route-head" style={{}}>
         SCHEDULE AN APPOINTMENT
       </h1>
