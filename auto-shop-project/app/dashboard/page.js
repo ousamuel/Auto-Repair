@@ -26,7 +26,7 @@ export default function Hello() {
       credentials: "include",
     })
       .then((response) => response.json())
-      .then((data) => setUser(data)) // You didn't define setUser in your initial code
+      .then((data) => setUser(data))
       .catch((error) => console.error("Error fetching user data:", error));
   }, []);
 

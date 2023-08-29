@@ -1,5 +1,6 @@
 "use client";
 import { useFormik } from "formik";
+import React, { useState, useEffect } from "react";
 
 export default function Appointment() {
   let today = new Date();
@@ -7,6 +8,22 @@ export default function Appointment() {
   timeAhead.setMonth(today.getMonth() + 2);
   today = today.toISOString().slice(0, 10);
   timeAhead = timeAhead.toISOString().slice(0, 10);
+  const [user, setUser] = useState('');
+
+  useEffect(() => {
+      fetch('http://127.0.0.1:5555/users/current', {
+          credentials: 'include'
+      })
+      .then(response => {
+        if (response.ok) {
+          return response.json()
+        } else {
+          return null
+        };
+      })
+      .then(data => setUser(data))
+      .catch(error => console.error('Error fetching user data:', error));
+  }, []);
 
   const formik = useFormik({
     initialValues: {
@@ -18,7 +35,6 @@ export default function Appointment() {
       model: "",
       year: "",
       engine: "",
-      plateNumber:"",
       date: today,
       time: "08:00",
       service: [],
@@ -30,7 +46,7 @@ export default function Appointment() {
       );
     },
   });
-  console.log(formik);
+  // console.log(formik);
   return (
     <div
       style={{
@@ -56,7 +72,7 @@ export default function Appointment() {
               type="text"
               placeholder="e.g. Elvis"
               onChange={formik.handleChange}
-              value={formik.values.firstName}
+              value={user ? user.first_name : formik.values.firstName}
             />
           </div>
           <div className="submit-box">
@@ -67,7 +83,7 @@ export default function Appointment() {
               type="text"
               placeholder="e.g. Presley"
               onChange={formik.handleChange}
-              value={formik.values.lastName}
+              value={user ? user.last_name : formik.values.lastName}
             />
           </div>
           <div className="submit-box">
@@ -78,7 +94,7 @@ export default function Appointment() {
               type="text"
               placeholder="e.g. elvispresley88@gmail.com"
               onChange={formik.handleChange}
-              value={formik.values.email}
+              value={user ? user.email : formik.values.email}
             />
           </div>
           <div className="submit-box">
@@ -89,7 +105,7 @@ export default function Appointment() {
               type="text"
               placeholder="(optional) e.g. 123-456-7890"
               onChange={formik.handleChange}
-              value={formik.values.phoneNumber}
+              value={user ? user.phone_number : formik.values.phoneNumber}
             />
           </div>
         </div>

@@ -14,7 +14,7 @@ function Test() {
     }, []);
     return (
         <div>
-            <h1>Welcome, {user.last_name}</h1>
+            <h1>Welcome, {user.first_name}</h1>
         </div>
     );
 }
