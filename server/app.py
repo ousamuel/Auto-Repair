@@ -124,7 +124,7 @@ class Signup(Resource):
             setattr(user, attr, data[attr])
         db.session.add(user)
         db.session.commit()
-        return make_response(user, 200)
+        return make_response(user.to_dict(), 200)
 api.add_resource(Signup, '/signup')
 # LOGOUT OPTIONAL
 class Logout(Resource):
@@ -138,6 +138,32 @@ class Logout(Resource):
             return {}, 204
         
         return {'error': '401 Unauthorized'}, 401
+api.add_resource(Logout, '/logout')
+
+class MakeAppointmentLoggedIn(Resource):
+    def post(self):
+        user_id = session.get('user_id')
+        data = request.get_json()
+        userID = int(''.join(map(str, user_id)))
+        appointments = Appointment()
+        car = Car.query.filter(Car.plate_number == data['plate_number']).one_or_none()
+        if not car:
+            newcar = Car()
+            for attr in data:
+                setattr(newcar, attr, data[attr])
+            setattr(newcar, 'user_id', userID)
+            db.session.add(newcar)
+            db.session.commit()
+        carss = Car.query.filter(Car.plate_number == data['plate_number']).one_or_none()
+        for attr in data:
+            setattr(appointments, attr, data[attr])
+        setattr(appointments, 'user_id', userID)
+        setattr(appointments, 'car_id', carss.id)
+        db.session.add(appointments)
+        db.session.commit()
+        return make_response(appointments.to_dict(), 200 )
+api.add_resource(MakeAppointmentLoggedIn, '/LoggedInAppointments')
+
 
 if __name__ == "__main__":
     app.run(port=5555, debug = True )

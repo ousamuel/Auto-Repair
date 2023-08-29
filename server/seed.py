@@ -16,8 +16,8 @@ if __name__ == '__main__':
         db.session.commit()
         
         print("Seeding cars...")
-        accord = Car(make='Honda', model='Accord', year=2022, engine='252-hp turbocharged 2.0-liter four-cylinder', user_id =mark.id)
-        forester = Car(make='Subaru', model='Forester', year=2022, engine='182-hp 2.5-liter flat-four-cylinder', user_id = sam.id)
+        accord = Car(make='Honda', model='Accord', year=2022, engine='252-hp turbocharged 2.0-liter four-cylinder',plate_number = 'TNGM07', user_id =mark.id)
+        forester = Car(make='Subaru', model='Forester', year=2022, engine='182-hp 2.5-liter flat-four-cylinder',plate_number = 'SAMOUT1', user_id = sam.id)
         cars=[accord,forester]
         db.session.add_all(cars)
         db.session.commit()
