@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 
 export default function Hello() {
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState('');
   const [cars, setCars] = useState([]);
 
   useEffect(() => {
@@ -21,20 +21,20 @@ export default function Hello() {
       })
       .then((data) => setCars(data))
       .catch((err) => console.error(err));
-      
-    fetch("http://127.0.0.1:5555/users/current", {
-      credentials: "include",
-    })
-      .then((response) => response.json())
-      .then((data) => setUser(data))
-      .catch((error) => console.error("Error fetching user data:", error));
-  }, []);
+    },[])
+  //   fetch("http://127.0.0.1:5555/users/current", {
+  //     credentials: "include",
+  //   })
+  //     .then((response) => response.json())
+  //     .then((data) => setUser(data))
+  //     .catch((error) => console.error("Error fetching user data:", error));
+  // }, []);
 
-  const userList = users.map((user) => (
-    <div key={user.id}>
-      {user.first_name} {user.last_name}
-    </div>
-  ));
+  // const userList = users.map((user) => (
+  //   <div key={user.id}>
+  //     {user.first_name} {user.last_name}
+  //   </div>
+  // ));
 
   const carList = cars.map((car) => (
     <div key={car.id}>

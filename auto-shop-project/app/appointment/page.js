@@ -49,10 +49,16 @@ export default function Appointment() {
   // console.log(formik);
   return (
     <div
+
       id='big'
       style={{
         height: "100%",
         paddingBottom: "75px",
+
+      style={{
+        height: "100vw",
+        paddingBottom: "60px",
+        main
         fontFamily: "'Oswald', sans-serif",
         backgroundImage: 'url("/images/tires.jpg")',
         // backgroundRepeat: "no-repeat",
@@ -62,7 +68,11 @@ export default function Appointment() {
       }}
     >
       <h1 className="route-head">SCHEDULE AN APPOINTMENT</h1>
+
       <form className="form-box" onSubmit={formik.handleSubmit}>
+
+      <form id="form-box" onSubmit={formik.handleSubmit}>
+       main
         <h1 className="contact-subheader">CONTACT INFORMATION</h1>
         <div className="submit-container">
           <div className="submit-box">
@@ -233,8 +243,13 @@ export default function Appointment() {
                   type="checkbox"
                   id="option3"
                   name="service"
+
                   value="Paint Touch-up"
                   checked={formik.values.service.includes("Paint touch-up")}
+
+                  value="Detailing"
+                  checked={formik.values.service.includes("Detailing")}
+
                   onChange={formik.handleChange}
                 />
                 <label className="service-li" htmlFor="option3">

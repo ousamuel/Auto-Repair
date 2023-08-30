@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 export default function login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [user, SetUser] = useState(null);
+  const [user, SetUser] = useState('');
   const router = useRouter();
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -29,7 +29,7 @@ export default function login() {
         .then((response) => response.json())
         .then((json) => {
           SetUser(json);
-          router.push("/test");
+          router.push("/dashboard");
         });
     }
   };
