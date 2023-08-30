@@ -49,9 +49,10 @@ export default function Appointment() {
   // console.log(formik);
   return (
     <div
+      id='big'
       style={{
-        height: "100vw",
-        paddingBottom: "60px",
+        height: "100%",
+        paddingBottom: "75px",
         fontFamily: "'Oswald', sans-serif",
         backgroundImage: 'url("/images/tires.jpg")',
         // backgroundRepeat: "no-repeat",
@@ -61,7 +62,7 @@ export default function Appointment() {
       }}
     >
       <h1 className="route-head">SCHEDULE AN APPOINTMENT</h1>
-      <form id="form-box" onSubmit={formik.handleSubmit}>
+      <form className="form-box" onSubmit={formik.handleSubmit}>
         <h1 className="contact-subheader">CONTACT INFORMATION</h1>
         <div className="submit-container">
           <div className="submit-box">
@@ -199,8 +200,8 @@ export default function Appointment() {
         </div>
         <h1 className="contact-subheader">TYPE OF SERVICE</h1>
         <div className="submit-container">
-          <div className="submit-box">
-            <ul style={{ border: "solid", fontSize: "22px" }}>
+          <div className="submit-box" style={{display:"flex"}}>
+            <ul style={{ fontSize: "22px", width:"60%"}}>
               <li>
                 <input
                   type="checkbox"
@@ -232,12 +233,53 @@ export default function Appointment() {
                   type="checkbox"
                   id="option3"
                   name="service"
-                  value="Detailing"
-                  checked={formik.values.service.includes("Detailing")}
+                  value="Paint Touch-up"
+                  checked={formik.values.service.includes("Paint touch-up")}
                   onChange={formik.handleChange}
                 />
                 <label className="service-li" htmlFor="option3">
-                  Detailing
+                  Paint Touch-up
+                </label>
+              </li>
+            </ul>
+            <ul style={{ fontSize: "22px", width:"60%"}}>
+              <li>
+                <input
+                  type="checkbox"
+                  id="option4"
+                  name="service"
+                  value="Polish & Wax"
+                  checked={formik.values.service.includes("Polish & Wax")}
+                  onChange={formik.handleChange}
+                />
+                <label className="service-li" htmlFor="option4">
+                  Polish & Wax
+                </label>
+              </li>
+              <li>
+                <input
+                  type="checkbox"
+                  id="option5"
+                  name="service"
+                  value="Brake Repair"
+                  checked={formik.values.service.includes("")}
+                  onChange={formik.handleChange}
+                />
+                <label className="service-li" htmlFor="option5">
+                  Brake Repair
+                </label>
+              </li>
+              <li>
+                <input
+                  type="checkbox"
+                  id="option6"
+                  name="service"
+                  value="Scratch Removal"
+                  checked={formik.values.service.includes("Scratch Removal")}
+                  onChange={formik.handleChange}
+                />
+                <label className="service-li" htmlFor="option6">
+                  Scratch Removal
                 </label>
               </li>
             </ul>

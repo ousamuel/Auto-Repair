@@ -37,7 +37,9 @@ export default function RootLayout({ children }) {
       </head>
       <body className={inter.className}>
       <header className="header">
-        <div className="logo">DARREN'S AUTO DETAIL</div>
+        <div className="logo">DARREN'S AUTO DETAIL
+        <img src="/images/Daco_721500.png" style={{marginLeft:"10px",display:"inline",height:"35px", width:"110px",filter:"invert(1)"}}/>
+        </div>
         <nav className="navigation">
           <a href="/dashboard">HOME</a>
           <a href="/gallery">GALLERY</a>
@@ -47,14 +49,11 @@ export default function RootLayout({ children }) {
           {user ? <a href='/test'>ACCOUNT</a> : <a href='/login'>ACCOUNT</a>}
         </nav>
       </header>
- sam
       <div style={{paddingTop: "70px"}}>
         {children}
       </div>
         </body>
       
-=======
-        {children}</body>main
     </html>
   )
 }

@@ -32,13 +32,13 @@ export default function Services() {
             Ensuring that your brakes are in top condition is not just essential
             for the longevity of your car, but also for the safety of you and
             your passengers.
-          </div>
           <h2>SIGNS YOU NEED NEW BRAKES/BRAKE PADS </h2>
-          <ol>
+          <ol >
             <li>• soft/spongy braking</li>
             <li>• squeaking/grinding noise</li>
             <li>• increased stopping distance</li>
           </ol>
+          </div>
         </div>
       </div>
       {/*  */}
@@ -72,8 +72,6 @@ export default function Services() {
         </div>
       </div>
       {/*  */}
-      <div className="service-block"> services1 </div>
-      <div className="service-block"> services1 </div>
     </div>
   );
 }

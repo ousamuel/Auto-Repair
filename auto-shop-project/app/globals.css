@@ -30,6 +30,7 @@ body {
   max-width: 30%;
   max-height: 20vw;
   margin: 20px;
+  border-radius: 2px;
   box-shadow: 0 0 7px 7px rgba(255, 255, 255, 0.2);
 }
 .image-flex {
@@ -41,7 +42,8 @@ body {
 .route-head {
   color: white;
   width: 100vw;
-  font-size: 50px;
+  font-size: 54px;
+  font-weight: 1000;
   text-align: center;
   padding-top: 40px;
   -webkit-text-stroke-width: 2px;
@@ -56,16 +58,48 @@ body {
   margin: auto;
   border-radius: 4px;
 }
-#form-box {
+.form-box {
   background-color: gray;
   width: 75vw;
   margin: auto;
-  border-radius: 10px;
+  border-radius: 5px;
   text-align: center;
   color: black;
   font-size: 20px;
   padding-top: 15px;
   font-weight: 600;
+}
+.login-box {
+  background-color: gray;
+  width: 45vw;
+  margin: auto;
+  border-radius: 5px;
+  text-align: center;
+  color: black;
+  font-size: 20px;
+  padding-top: 15px;
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.login-input {
+  width: 75%;
+  background-color: rgb(76, 76, 76);
+  padding-left:12px;
+  outline:none;
+  color:white;
+}
+.login-wrap{
+  height:45px;
+  width:60%;
+  display:inline-flex;
+  background-color: rgb(76, 76, 76);
+  /* border-radius:5px; */
+  border:solid;
+  border-color: rgb(169, 169, 169);
+
 }
 .submit-container {
   /* text-align:center; */
@@ -131,10 +165,24 @@ body {
   font-family: "Oswald", sans-serif;
   background-color: black;
   min-width: 100vw;
+  text-align: center;
+  min-height: calc(100vh - 70px);
+}
+.acc-container {
+  font-family: "Oswald", sans-serif;
+  background-color: black;
+  min-width: 100vw;
+  text-align: center;
+  min-height: calc(100vh - 70px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
 }
 
 .header {
   font-family: "Oswald", sans-serif;
+  color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -198,20 +246,23 @@ body {
   border-radius: 5px;
 }
 .service-header {
-  font-size: 40px;
+  font-size: 55px;
+  font-weight: 1000;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: rgb(111, 55, 55);
 }
 
 .service-block {
   width: 100%;
-  border-bottom: solid;
+  /* border-bottom: solid; */
   border-style: dashed;
   border-color: red;
   height: calc(100vh - 70px);
   min-height: 400px;
   display: flex;
-  
-  scroll-snap-align: center;
+  color: white;
 
+  scroll-snap-align: center;
 }
 .service-text {
   width: 50%;
@@ -222,10 +273,11 @@ body {
   justify-content: center;
   background-color: black;
   color: white;
-  text-align:center;
+  text-align: center;
 }
-.service-body-text{
-  width:80%;
+.service-body-text {
+  font-size: 19px;
+  width: 70%;
 }
 
 .service-image-div {
@@ -237,7 +289,7 @@ body {
   justify-content: center;
 }
 .service-image {
-  height: 75%;
+  height: 70%;
   width: 95%;
   border-radius: 4px;
 }
@@ -251,8 +303,8 @@ body {
 /* .links:visited{
   color:blueviolet;
 } */
-h2{
-  font-size:30px;
-  margin-top:10px;
+h2 {
+  font-size: 30px;
+  margin-top: 10px;
   text-decoration: underline;
 }

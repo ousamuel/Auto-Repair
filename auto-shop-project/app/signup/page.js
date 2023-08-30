@@ -1,12 +1,8 @@
-"use client"; sam
+"use client"; 
 import React from 'react'
-export const register = () => {
-
-  return (
-  <>
 export default function Signup(){
   return(
-    <> main
+    <>
     <h1>Register</h1>
       <form>
         <label>First Name:
@@ -28,4 +24,3 @@ export default function Signup(){
   </>
   )
 }
-export default register

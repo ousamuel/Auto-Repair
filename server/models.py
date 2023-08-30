@@ -26,26 +26,8 @@ class User(db.Model, SerializerMixin):
     password = db.Column(db.String, nullable = False)
     appointments = db.relationship('Appointment', cascade = 'all,delete',backref = 'user')
     serialize_rules=('-appointments.user',)
-<<<<<<< HEAD
 
 
-=======
-    # @validates('first_name')
-    # def validate_first_name(self, key, first_name):
-    #     if len(first_name) <= 1:
-    #         raise ValueError('names must be more than 1 character')
-    #     return first_name
-    # @validates('last_name')
-    # def validate_first_name(self, key, last_name):
-    #     if len(last_name) <= 1:
-    #         raise ValueError('names must be more than 1 character')
-    #     return last_name
-    # @validates('password')
-    # def validate_first_name(self, key, password):
-    #     if len(password) <= 1:
-    #         raise ValueError('password must be more than 1 character')
-    #     return password
->>>>>>> origin/main
 class Car(db.Model, SerializerMixin):
     __tablename__ = 'cars'
 
