@@ -9,7 +9,6 @@ export default function Appointment() {
   today = today.toISOString().slice(0, 10);
   timeAhead = timeAhead.toISOString().slice(0, 10);
   const [user, setUser] = useState('');
-
   useEffect(() => {
       fetch('http://127.0.0.1:5555/users/current', {
           credentials: 'include'
@@ -24,7 +23,33 @@ export default function Appointment() {
       .then(data => setUser(data))
       .catch(error => console.error('Error fetching user data:', error));
   }, []);
-
+  
+  const onSubmit = () => {
+    fetch("http://127.0.0.1:5555/LoggedInAppointments", {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json; charset=UTF-8",
+      },
+      body: JSON.stringify({
+        first_name: formik.values.firstName,
+        last_name: formik.values.lastName,
+        email: formik.values.email,
+        password: formik.values.password,
+        phone_number: formik.values.phoneNumber,
+        make: formik.values.make,
+        model: formik.values.model,
+        year: formik.values.year,
+        engine: formik.values.engine,
+        plate_number: formik.values.plateNumber,
+        date: formik.values.date,
+        time: formik.values.time,
+        // It's creating an array so, we use a .join to seperate each one to a string! That's what a .join does look at db
+        type_of_service: formik.values.service.join(', ')
+      }),
+    })
+      .then((response) => response.json())
+};
   const formik = useFormik({
     initialValues: {
       firstName: "",
@@ -35,18 +60,17 @@ export default function Appointment() {
       model: "",
       year: "",
       engine: "",
+      plateNumber: "",
       date: today,
       time: "08:00",
-      service: [],
+      service: "",
       notes: "",
     },
-    onSubmit: (values) => {
-      alert(
-        "Appointment successfully scheduled \n Contact us via email at ___ with any questions."
-      );
+    onSubmit,
     },
-  });
-  // console.log(formik);
+
+  )
+  
   return (
     <div
       style={{
@@ -256,9 +280,11 @@ export default function Appointment() {
             />
           </div>
         </div>
-        <button id="appt-button" type="submit">
+        {user ? <button id="appt-button" type="submit">
           MAKE APPOINTMENT
-        </button>
+        </button> : <button id="appt-button" type="submit">
+          MAKE APPOINTMENT & SIGNUP
+        </button>}
       </form>
     </div>
   );

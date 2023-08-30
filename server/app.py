@@ -144,24 +144,38 @@ class MakeAppointmentLoggedIn(Resource):
     def post(self):
         user_id = session.get('user_id')
         data = request.get_json()
-        userID = int(''.join(map(str, user_id)))
+        user = User.query.get(user_id)
+        if not user_id:
+            user = User()
+            data = request.get_json()
+            user.first_name = data['first_name']
+            user.last_name = data['last_name']
+            user.email = data["email"]
+            user.phone_number = data['phone_number']
+            db.session.add(user)
+            db.session.commit()
+            user_id = user.id
+        db.session.commit()  
         appointments = Appointment()
         car = Car.query.filter(Car.plate_number == data['plate_number']).one_or_none()
         if not car:
-            newcar = Car()
+            new_car = Car()
             for attr in data:
-                setattr(newcar, attr, data[attr])
-            setattr(newcar, 'user_id', userID)
-            db.session.add(newcar)
+                setattr(new_car, attr, data[attr])
+            setattr(new_car, 'user_id', user.id)
+            db.session.add(new_car)
             db.session.commit()
         carss = Car.query.filter(Car.plate_number == data['plate_number']).one_or_none()
         for attr in data:
             setattr(appointments, attr, data[attr])
-        setattr(appointments, 'user_id', userID)
+        # appointment is the call of the instancce
+        # user_id is what we are targeting
+        # userID is what we are changing it into
+        setattr(appointments, 'user_id', user.id)
         setattr(appointments, 'car_id', carss.id)
         db.session.add(appointments)
         db.session.commit()
-        return make_response(appointments.to_dict(), 200 )
+        return make_response(appointments.to_dict(), 200)
 api.add_resource(MakeAppointmentLoggedIn, '/LoggedInAppointments')
 
 
