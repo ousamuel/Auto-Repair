@@ -34,86 +34,81 @@ export default function login() {
     }
   };
   return (
-    <div
-      className="acc-container"
-      style={{
-        backgroundImage: 'url("/images/carshop.jpg")',
-        // backgroundRepeat: "no-repeat",
-        backgroundPosition: "center center",
-        backgroundAttachment: "fixed",
-        backgroundSize: "120%",
-        backgroundPosition:"-170px -240px"
-      }}
-    >
-      <form className="login-box" onSubmit={handleFormSubmit}>
-        <h2>DARREN'S AUTO DETAIL</h2>
-        <img
-          src="/images/Daco_721500.png"
-          style={{ marginTop: "15px", height: "70px", width: "220px" }}
-        />
-        <div
-          className="login-wrap"
-          style={{
-            marginTop: "20px",
-            borderTopLeftRadius: "7px",
-            borderTopRightRadius: "7px",
-            borderBottom: "none",
-          }}
-        >
+    <div className="acc-container">
+      <img className="background-image" src="/images/carshop.jpg" 
+      style={{opacity:"95%"}}/>
+      <div className="centered-text"
+      style={{top:"50%"}}>
+        <form className="login-box" onSubmit={handleFormSubmit}>
+          <h2>DARREN'S AUTO DETAIL</h2>
           <img
+            src="/images/Daco_721500.png"
+            style={{ marginTop: "15px", height: "70px", width: "220px" }}
+          />
+          <div
+            className="login-wrap"
             style={{
-              height: "18px",
-              width: "25px",
-              filter: "invert(1)",
-              marginTop: "13px",
-              marginLeft: "12px",
+              marginTop: "20px",
+              borderTopLeftRadius: "7px",
+              borderTopRightRadius: "7px",
+              borderBottom: "none",
             }}
-            src="/images/email.png"
-          />
-          <input
-            className="login-input"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="email"
-          />
-        </div>
-        <div
-          className="login-wrap"
-          style={{
-            borderBottomLeftRadius: "7px",
-            borderBottomRightRadius: "7px",
-          }}
-        >
-          <img
+          >
+            <img
+              style={{
+                height: "18px",
+                width: "25px",
+                filter: "invert(1)",
+                marginTop: "13px",
+                marginLeft: "12px",
+              }}
+              src="/images/email.png"
+            />
+            <input
+              className="login-input"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="email"
+            />
+          </div>
+          <div
+            className="login-wrap"
             style={{
-              height: "20px",
-              width: "20px",
-              filter: "invert(1)",
-              marginTop: "10px",
-              marginLeft: "15px",
+              borderBottomLeftRadius: "7px",
+              borderBottomRightRadius: "7px",
             }}
-            src="/images/password.png"
-          />
-          <input
-            className="login-input"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="password"
-            style={{paddingLeft:"14px"}}
-          />
-        </div>
-        <button id="appt-button" type="submit">
-          LOG IN
-        </button>
-        <div>
-          <a className="links" href="/signup">
-            Sign up
-          </a>{" "}
-          if no account
-        </div>
-      </form>
+          >
+            <img
+              style={{
+                height: "20px",
+                width: "20px",
+                filter: "invert(1)",
+                marginTop: "10px",
+                marginLeft: "15px",
+              }}
+              src="/images/password.png"
+            />
+            <input
+              className="login-input"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="password"
+              style={{ paddingLeft: "14px" }}
+            />
+          </div>
+          <button id="appt-button" type="submit">
+            LOG IN
+          </button>
+          <div>
+            <a className="links" href="/signup">
+              Sign up
+            </a>{" "}
+            if no account
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

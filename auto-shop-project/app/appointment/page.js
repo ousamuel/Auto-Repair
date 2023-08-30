@@ -234,7 +234,7 @@ export default function Appointment() {
                   id="option3"
                   name="service"
                   value="Paint Touch-up"
-                  checked={formik.values.service.includes("Paint touch-up")}
+                  checked={formik.values.service.includes("Paint Touch-up")}
                   onChange={formik.handleChange}
                 />
                 <label className="service-li" htmlFor="option3">
@@ -261,12 +261,12 @@ export default function Appointment() {
                   type="checkbox"
                   id="option5"
                   name="service"
-                  value="Brake Repair"
-                  checked={formik.values.service.includes("")}
+                  value="Exterior Hand Wash"
+                  checked={formik.values.service.includes("Exterior Hand Wash")}
                   onChange={formik.handleChange}
                 />
                 <label className="service-li" htmlFor="option5">
-                  Brake Repair
+                  Exterior Hand Wash
                 </label>
               </li>
               <li>
