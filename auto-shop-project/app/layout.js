@@ -46,14 +46,12 @@ export default function RootLayout({ children }) {
           <a href="/services">SERVICES</a>
           <a href="/appointment">APPOINTMENT</a>
           <a href="/contact">CONTACT US</a>
-          {user ? <a href='/test'>ACCOUNT</a> : <a href='/login'>ACCOUNT</a>}
+          {user ? <a href='/account'>ACCOUNT</a> : <a href='/login'>ACCOUNT</a>}
         </nav>
       </header>
-      <div style={{paddingTop: "70px"}}>
+      <div style={{paddingTop: "70px"}}/>
         {children}
-      </div>
         </body>
-      
     </html>
   )
 }

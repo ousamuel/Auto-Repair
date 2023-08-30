@@ -49,10 +49,9 @@ export default function Appointment() {
   // console.log(formik);
   return (
     <div
-      id='big'
       style={{
-        height: "100%",
-        paddingBottom: "75px",
+        height: "100vw",
+        paddingBottom: "60px",
         fontFamily: "'Oswald', sans-serif",
         backgroundImage: 'url("/images/tires.jpg")',
         // backgroundRepeat: "no-repeat",
