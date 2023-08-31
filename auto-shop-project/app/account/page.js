@@ -4,7 +4,6 @@ import { useRouter } from "next/navigation";
 
 function Test() {
     const [user, setUser] = useState([]);
-const router = useRouter()
 useEffect(() => {
     fetch('http://127.0.0.1:5555/users/current', {
         credentials: 'include'
@@ -32,17 +31,17 @@ useEffect(() => {
         {user ?
         <div className='appointment-BoxContainer'>
             <div>
-                <h2>{user.first_name}'s Appointments</h2>
-                {user.appointments ? user.appointments.map((appt) => {
+                <h2>Appointment</h2>
+                {user.appointments ? user.appointments.map((appt) => {  
                 return <div key={appt.id}>
                 <div>Date:{appt.date}</div>
                 <div>Time:{appt.time}</div>
                 Type of Service: {appt.type_of_service}</div>
-                }): <div>Loading ... </div>}
+                }): <h1>LOADING...</h1>}
                 <a id="appt-button" onClick={handleClick} href='/login'>Logout</a>
             </div>
         </div>
-        : <><div>Loading....</div></>}
+        : <><div></div></>}
     </div> 
     );
 }
