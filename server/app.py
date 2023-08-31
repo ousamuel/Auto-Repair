@@ -73,17 +73,13 @@ class Login(Resource):
         if not user:
             return make_response({'error':'No user found with email'}, 401)
         if user.email != email:
-            return make_response({"error":"Invalid email or password"})
+            return make_response({"error":"Invalid email or password"}, 400)
         if user.password != password:
-            return make_response({"error":"Invalid email or password"})
+            return make_response({"error":"Invalid email or password"}, 400)
         if user.password == password and user.email == email:
             session['user_id'] = user.id,
             session['user_name'] = user.first_name
-            return make_response({
-                "id":user.id,
-                "email":user.email,
-                "name": user.first_name
-            },200)
+            return make_response(user.to_dict(),200)
         
 api.add_resource(Login, '/login')
 class Appointments(Resource):
