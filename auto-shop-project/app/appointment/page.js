@@ -77,9 +77,10 @@ export default function Appointment() {
     },
     onSubmit,
   });
-  let apptsByDay = appts.filter(appt =>appt.date === formik.values.date)
-  // let overlap = apptsByDay.filter(appt=> appt.time === value)
-  {<option value="08:00">08:00 AM</option>}
+  let takenTimes = []
+  appts.filter(appt =>appt.date === formik.values.date).forEach(appt => takenTimes.push(appt.time))
+  console.log(takenTimes)
+  console.log(takenTimes.includes("12:00"))
 
   return (
     <div
@@ -221,15 +222,15 @@ export default function Appointment() {
               onChange={formik.handleChange}
               value={formik.values.time}
             >
-
-              <option value="08:00">08:00 AM</option>
-              <option value="09:00">09:00 AM</option>
-              <option value="10:00">10:00 AM</option>
-              <option value="11:00">11:00 AM</option>
-              <option value="12:00">12:00 PM</option>
-              <option value="13:00">01:00 PM</option>
-              <option value="14:00">02:00 PM</option>
-              <option value="15:00">03:00 PM</option>
+              {takenTimes.includes("08:00") ? <option value="08:00" disabled style={{ textDecoration: 'line-through' }}>08:00 AM</option> : <option value="08:00">08:00 AM</option> }
+              {takenTimes.includes("09:00") ? <option value="09:00" disabled style={{ textDecoration: 'line-through' }}>09:00 PM</option> : <option value="09:00">09:00 AM</option> }
+              {takenTimes.includes("10:00") ? <option value="10:00" disabled style={{ textDecoration: 'line-through' }}>10:00 PM</option> : <option value="10:00">10:00 AM</option> }
+              {takenTimes.includes("11:00") ? <option value="11:00" disabled style={{ textDecoration: 'line-through' }}>11:00 PM</option> : <option value="11:00">11:00 AM</option> }
+              {takenTimes.includes("12:00") ? <option value="12:00" disabled style={{ textDecoration: 'line-through' }}>12:00 PM</option> : <option value="12:00">12:00 PM</option> }
+              {takenTimes.includes("13:00") ? <option value="13:00" disabled style={{ textDecoration: 'line-through' }}>01:00 PM</option> : <option value="13:00">01:00 PM</option> }
+              {takenTimes.includes("14:00") ? <option value="14:00" disabled style={{ textDecoration: 'line-through' }}>02:00 PM</option> : <option value="14:00">02:00 PM</option> }
+              {takenTimes.includes("15:00") ? <option value="15:00" disabled style={{ textDecoration: 'line-through' }}>03:00 PM</option> : <option value="15:00">03:00 PM</option> }
+              {takenTimes.includes("16:00") ? <option value="16:00" disabled style={{ textDecoration: 'line-through' }}>04:00 PM</option> : <option value="16:00">04:00 PM</option> }
             </select>
           </div>
         </div>

@@ -28,13 +28,10 @@ export default function RootLayout({ children }) {
         };
       })
       .then(data => {setUser(data);
-      console.log(data)})
-<<<<<<< HEAD
-      if (user) setLoading(true)
-=======
+      // console.log(data)
+    })
       setLoading(true)
 
->>>>>>> origin/main
   }, []);
   
   return (
