@@ -1,12 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 export default function login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [user, SetUser] = useState('');
-  const [userData, setUserData] = useState(user);
   const router = useRouter();
   const handleFormSubmit = async (e) => {
     e.preventDefault();

@@ -14,6 +14,7 @@ const inter = Inter({ subsets: ['latin'] })
 export default function RootLayout({ children }) {
 
   const [user, setUser] = useState('');
+  const [loading, setLoading] = useState(false)
   useEffect(() => {
       fetch('http://127.0.0.1:5555/users/current', {
           credentials: 'include'
@@ -27,7 +28,10 @@ export default function RootLayout({ children }) {
       })
       .then(data => {setUser(data);
       console.log(data)})
+      if (user);
+  setLoading(true)
   }, []);
+  
   return (
     <html lang="en">
       <head>
@@ -44,7 +48,7 @@ export default function RootLayout({ children }) {
           <a href="/services">SERVICES</a>
           <a href="/appointment">APPOINTMENT</a>
           <a href="/contact">CONTACT US</a>
-          {user ? <a href='/account'>ACCOUNT</a> : <a href='/login'>ACCOUNT</a>}
+          {loading ? <a href='/account'>ACCOUNT</a> : <a href='/login'>ACCOUNT</a>}
         </nav>
       </header>
       <div style={{paddingTop: "70px"}}/>
