@@ -24,11 +24,17 @@ export default function RootLayout({ children }) {
           return response.json()
         } else {
           return null
+          
         };
       })
       .then(data => {setUser(data);
       console.log(data)})
+<<<<<<< HEAD
       if (user) setLoading(true)
+=======
+      setLoading(true)
+
+>>>>>>> origin/main
   }, []);
   
   return (
