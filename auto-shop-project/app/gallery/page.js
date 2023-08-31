@@ -10,6 +10,16 @@ export default function Gallery(){
     '/images/subie1.jpg',
     '/images/subie2.jpg',
     '/images/subie3.jpg',
+    '/images/bmw.jpeg',
+    '/images/bmw1.jpeg',
+    '/images/bmw2.jpeg',
+    '/images/bmw3.jpeg',
+    '/images/bmw4.jpeg',
+    '/images/bmw5.jpeg',
+    '/images/bmw6.jpeg',
+    '/images/bmw7.jpeg',
+    '/images/bmw8.jpeg',
+    '/images/bmw9.jpeg',
   ]
   function handleClick(e){
     console.log(e.target)

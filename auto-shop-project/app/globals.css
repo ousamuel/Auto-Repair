@@ -248,9 +248,9 @@ body {
   border-radius: 5px;
 }
 .service-header {
-  font-size: 55px;
+  font-size: 60px;
   font-weight: 1000;
-  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-width: 3px;
   -webkit-text-stroke-color: rgb(111, 55, 55);
 }
 
