@@ -8,22 +8,32 @@ export default function Appointment() {
   timeAhead.setMonth(today.getMonth() + 2);
   today = today.toISOString().slice(0, 10);
   timeAhead = timeAhead.toISOString().slice(0, 10);
-  const [user, setUser] = useState('');
+  const [user, setUser] = useState("");
+  const [appts, setAppts] = useState([]);
+  const [test, setTest] = useState([]);
   useEffect(() => {
-      fetch('http://127.0.0.1:5555/users/current', {
-          credentials: 'include'
-      })
-      .then(response => {
-        if (response.ok) {
-          return response.json()
-        } else {
-          return null
-        };
-      })
-      .then(data => setUser(data))
-      .catch(error => console.error('Error fetching user data:', error));
+    const fetchUser = fetch("http://127.0.0.1:5555/users/current", {
+      credentials: "include",
+    })
+      .then((response) => (response.ok ? response.json() : null))
+      .catch((error) => console.error("Error fetching user data:", error));
+
+    const fetchAppts = fetch("http://127.0.0.1:5555/appointments")
+      .then((response) => (response.ok ? response.json() : null))
+      .catch((error) =>
+        console.error("Error fetching appointment data:", error)
+      );
+
+    Promise.all([fetchUser, fetchAppts]).then(
+      ([userData, apptData]) => {
+        setUser(userData);
+        setAppts(apptData);
+      }
+    );
   }, []);
   
+  // console.log(user)
+
   const onSubmit = () => {
     fetch("http://127.0.0.1:5555/LoggedInAppointments", {
       method: "POST",
@@ -45,11 +55,10 @@ export default function Appointment() {
         date: formik.values.date,
         time: formik.values.time,
         // It's creating an array so, we use a .join to seperate each one to a string! That's what a .join does look at db
-        type_of_service: formik.values.service.join(', ')
+        type_of_service: formik.values.service.join(", "),
       }),
-    })
-      .then((response) => response.json())
-};
+    }).then((response) => response.json());
+  };
   const formik = useFormik({
     initialValues: {
       firstName: "",
@@ -67,17 +76,16 @@ export default function Appointment() {
       notes: "",
     },
     onSubmit,
-    },
+  });
+  let apptsByDay = appts.filter(appt =>appt.date === formik.values.date)
+  // let overlap = apptsByDay.filter(appt=> appt.time === value)
+  {<option value="08:00">08:00 AM</option>}
 
-  )
-  
   return (
     <div
-
-      id='big'
-
+      id="big"
       style={{
-        height: "100vw",
+        minHeight: "100vw",
         paddingBottom: "60px",
         fontFamily: "'Oswald', sans-serif",
         backgroundImage: 'url("/images/tires.jpg")',
@@ -213,6 +221,7 @@ export default function Appointment() {
               onChange={formik.handleChange}
               value={formik.values.time}
             >
+
               <option value="08:00">08:00 AM</option>
               <option value="09:00">09:00 AM</option>
               <option value="10:00">10:00 AM</option>
@@ -226,8 +235,8 @@ export default function Appointment() {
         </div>
         <h1 className="contact-subheader">TYPE OF SERVICE</h1>
         <div className="submit-container">
-          <div className="submit-box" style={{display:"flex"}}>
-            <ul style={{ fontSize: "22px", width:"60%"}}>
+          <div className="submit-box" style={{ display: "flex" }}>
+            <ul style={{ fontSize: "22px", width: "60%" }}>
               <li>
                 <input
                   type="checkbox"
@@ -268,7 +277,7 @@ export default function Appointment() {
                 </label>
               </li>
             </ul>
-            <ul style={{ fontSize: "22px", width:"60%"}}>
+            <ul style={{ fontSize: "22px", width: "60%" }}>
               <li>
                 <input
                   type="checkbox"
@@ -315,7 +324,7 @@ export default function Appointment() {
         <div className="submit-container">
           <div className="submit-box">
             <textarea
-              name='notes'
+              name="notes"
               id="message-box"
               type="text"
               value={formik.values.notes}
@@ -324,11 +333,15 @@ export default function Appointment() {
             />
           </div>
         </div>
-        {user ? <button id="appt-button" type="submit">
-          MAKE APPOINTMENT
-        </button> : <button id="appt-button" type="submit">
-          MAKE APPOINTMENT & SIGNUP
-        </button>}
+        {user ? (
+          <button id="appt-button" type="submit">
+            MAKE APPOINTMENT
+          </button>
+        ) : (
+          <button id="appt-button" type="submit">
+            MAKE APPOINTMENT & SIGNUP
+          </button>
+        )}
       </form>
     </div>
   );
