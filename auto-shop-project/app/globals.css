@@ -310,3 +310,15 @@ h2 {
   margin-top: 10px;
   text-decoration: underline;
 }
+
+.appointment-BoxContainer {
+  display: flex;
+  align-content: center;
+  justify-content: space-evenly;
+  width: 300px;
+  flex-wrap: wrap;
+}
+.appointment-BoxContainer div {
+  text-align: left;
+  margin-top: 20px;
+}
