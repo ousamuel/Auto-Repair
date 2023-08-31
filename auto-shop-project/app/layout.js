@@ -14,7 +14,6 @@ const inter = Inter({ subsets: ['latin'] })
 export default function RootLayout({ children }) {
 
   const [user, setUser] = useState('');
-
   useEffect(() => {
       fetch('http://127.0.0.1:5555/users/current', {
           credentials: 'include'
@@ -26,10 +25,9 @@ export default function RootLayout({ children }) {
           return null
         };
       })
-      .then(data => setUser(data))
-      .catch(error => console.error('Error fetching user data:', error));
+      .then(data => {setUser(data);
+      console.log(data)})
   }, []);
-  
   return (
     <html lang="en">
       <head>

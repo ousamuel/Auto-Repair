@@ -2,11 +2,11 @@
 
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-
 export default function login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [user, SetUser] = useState('');
+  const [userData, setUserData] = useState(user);
   const router = useRouter();
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -15,7 +15,7 @@ export default function login() {
     } else if (password.length === 0) {
       return "password has left blank";
     } else {
-      fetch("http://127.0.0.1:5555/login", {
+      const response = await fetch("http://127.0.0.1:5555/login", {
         method: "POST",
         credentials: "include",
         headers: {
@@ -26,14 +26,15 @@ export default function login() {
           password: password,
         }),
       })
-        .then((response) => response.json())
-        .then((json) => {
-          SetUser(json);
-          router.push("/dashboard");
-        });
+      const data = await response.json()
+        if (data.ok)
+        SetUser(data);
+      router.push('/account')
     }
-  };
-  return (
+  }; 
+
+return (
+    <>
     <div className="acc-container">
       <img className="background-image" src="/images/carshop.jpg" 
       style={{opacity:"95%"}}/>
@@ -98,7 +99,7 @@ export default function login() {
               style={{ paddingLeft: "14px" }}
             />
           </div>
-          <button id="appt-button" type="submit">
+          <button id="appt-button" href='/account' type="submit">
             LOG IN
           </button>
           <div>
@@ -110,5 +111,6 @@ export default function login() {
         </form>
       </div>
     </div>
+  </>
   );
 }

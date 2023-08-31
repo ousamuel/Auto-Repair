@@ -36,31 +36,167 @@ export const signup = () => {
     onSubmit,
   })
   return (
-    <>
-      <form onSubmit={formik.handleSubmit} autoComplete='off'> 
-        <label htmlFor='firstName'></label>
-          <input value={formik.values.firstName}
-          onChange={formik.handleChange}
-          id='firstName' type='text' placeholder='First Name'/>
-        <label htmlFor='lastName'></label>
-          <input value={formik.values.lastName}
-          onChange={formik.handleChange}
-          id='lastName' type='text' placeholder='LastName'/>
-        <label htmlFor='email'></label>
-          <input value={formik.values.email}
-          onChange={formik.handleChange}
-          id='email' type='email' placeholder='Enter Your Email'/>
-        <label htmlFor='password'></label>
-          <input value={formik.values.password}
-          onChange={formik.handleChange}
-          id='password' type='password' placeholder='Enter Your Password'/>
-        <label htmlFor='phoneNumber'></label>
-          <input value={formik.values.phoneNumber}
-          onChange={formik.handleChange}
-          id='phoneNumber' type='PhoneNumber' placeholder='Enter Your Phone Number'/>
-          <button type='submit'>SignUp</button>
-      </form>
-    </>
-  )
-}
+    <div>
+      <div className="acc-container">
+        <img
+          className="background-image"
+          src="/images/carshop.jpg"
+          style={{ opacity: "95%" }}
+          alt="Background"
+        />
+        <div className="centered-text" style={{ top: "50%" }}>
+          <form className="login-box" onSubmit={formik.handleSubmit}>
+            <h2>DARREN'S AUTO DETAIL</h2>
+            <img
+              src="/images/Daco_721500.png"
+              style={{ marginTop: "15px", height: "70px", width: "220px" }}
+              alt="Logo"
+            />
+            <div
+            className="login-wrap"
+            style={{
+              marginTop: "20px",
+              borderTopLeftRadius: "7px",
+              borderTopRightRadius: "7px",
+              borderBottom: "none",
+            }}
+          >
+            <img
+              style={{
+                height: "18px",
+                width: "25px",
+                filter: "invert(1)",
+                marginTop: "13px",
+                marginLeft: "12px",
+              }}
+              src="/images/email.png"
+            />
+            <input
+              className = 'login-input'
+              id="firstName"
+              type="text"
+              placeholder="First Name"
+              value={formik.values.firstName}
+              onChange={formik.handleChange}
+            />
+            </div>
+            <div
+            className="login-wrap"
+            style={{
+              marginTop: "20px",
+              borderTopLeftRadius: "7px",
+              borderTopRightRadius: "7px",
+              borderBottom: "none",
+            }}
+          >
+            <img
+              style={{
+                height: "18px",
+                width: "25px",
+                filter: "invert(1)",
+                marginTop: "13px",
+                marginLeft: "12px",
+              }}
+              src="/images/email.png"
+            />
+            <input
+              className="login-input"
+              id="lastName"
+              type="text"
+              placeholder="Last Name"
+              value={formik.values.lastName}
+              onChange={formik.handleChange}
+            />
+            </div>
+            <div
+            className="login-wrap"
+            style={{
+              marginTop: "20px",
+              borderTopLeftRadius: "7px",
+              borderTopRightRadius: "7px",
+              borderBottom: "none",
+            }}
+          >
+            <img
+              style={{
+                height: "18px",
+                width: "25px",
+                filter: "invert(1)",
+                marginTop: "13px",
+                marginLeft: "12px",
+              }}
+              src="/images/email.png"
+            />
+            <input
+              className='login-input'
+              id="email"
+              type="email"
+              placeholder="Enter Your Email"
+              value={formik.values.email}
+              onChange={formik.handleChange}
+            />
+            </div>
+            <div
+            className="login-wrap"
+            style={{
+              marginTop: "20px",
+              borderTopLeftRadius: "7px",
+              borderTopRightRadius: "7px",
+              borderBottom: "none",
+            }}
+          >
+            <img
+              style={{
+                height: "18px",
+                width: "25px",
+                filter: "invert(1)",
+                marginTop: "13px",
+                marginLeft: "12px",
+              }}
+              src="/images/email.png"
+            />
+            <input
+              className='login-input'
+              id="password"
+              type="password"
+              placeholder="Enter Your Password"
+              value={formik.values.password}
+              onChange={formik.handleChange}
+            />
+            </div>
+            <div
+            className="login-wrap"
+            style={{
+              marginTop: "20px",
+              borderTopLeftRadius: "7px",
+              borderTopRightRadius: "7px",
+              borderBottom: "none",
+            }}
+          >
+            <img
+              style={{
+                height: "18px",
+                width: "25px",
+                filter: "invert(1)",
+                marginTop: "13px",
+                marginLeft: "12px",
+              }}
+              src="/images/email.png"
+            />
+            <input
+              className='login-input'
+              id="phoneNumber"
+              type="PhoneNumber"
+              placeholder="Enter Your Phone Number"
+              value={formik.values.phoneNumber}
+              onChange={formik.handleChange}
+            />
+            </div>
+            <button id="appt-button" type="submit">Sign Up</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+  }  
 export default signup

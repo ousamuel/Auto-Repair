@@ -24,8 +24,8 @@ if __name__ == '__main__':
 
         print("Seeding appointments...")
         
-        markacc = Appointment(date='10/10/2023', time=55, payment=100, type_of_service='Wheel Alignment', user_id=mark.id, car_id =accord.id)
-        samfor = Appointment(date='12/9/2023', time=60, payment=50, type_of_service='Oil Change', user_id=sam.id, car_id = forester.id)
+        markacc = Appointment(date='10/10/2023', time=55, type_of_service='Wheel Alignment', user_id=mark.id, car_id =accord.id)
+        samfor = Appointment(date='12/9/2023', time=60, type_of_service='Oil Change', user_id=sam.id, car_id = forester.id)
         appts =[markacc, samfor]
         db.session.add_all(appts)
         
