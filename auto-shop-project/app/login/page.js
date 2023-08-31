@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 
 
@@ -29,7 +29,7 @@ export default function login() {
       })
       const data = await response.json()
         if (data.ok)
-        SetUser(data);
+        return SetUser(data)
       router.push('/account')
     }
   }

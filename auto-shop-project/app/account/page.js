@@ -1,9 +1,10 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import { useRouter } from "next/navigation";
-
+import dynamic from 'next/dynamic'
 function Test() {
     const [user, setUser] = useState('');
+    const [loading, setLoading] = useState(true);
 const router = useRouter()
 useEffect(() => {
     fetch('http://127.0.0.1:5555/users/current', {
@@ -17,8 +18,9 @@ useEffect(() => {
       };
     })
     .then(data => {setUser(data);
+    setLoading(false)
     console.log(data)})
-}, []);
+}, [router]);
 
     const handleClick = () => {
         fetch('http://127.0.0.1:5555/logout',{
@@ -27,7 +29,10 @@ useEffect(() => {
         })
         .then ((data) => setUser(data));
     }
+    
     return (
+<div>
+    {loading ? <>LOADING!!!!!!</> :
     <div>{user ? 
         <div className='appointment-BoxContainer'>
             <div>
@@ -40,12 +45,11 @@ useEffect(() => {
                 }): <div>Loading ... </div>}
                 <a href='/accountsettings'>Account Settings</a>
                 <a onClick={handleClick} href='/login'>Logout</a>
-                <a href='/account'>Go Back</a>
             </div>
         </div>: <>
-        <h1>LOGIN FAILED</h1>
-        <a href='/login'> GO BACK TO LOGIN </a></>}
-    </div>
+        <a href='/login'>{router.push('/login')}</a></>}
+    </div>}
+</div>
     );
 }
 
