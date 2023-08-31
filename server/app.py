@@ -87,7 +87,7 @@ class Appointments(Resource):
         appts = Appointment.query.all()
         appts_ser =[a.to_dict() for a in appts]
         return make_response(appts_ser, 200)
-    
+        
     def post(self):
         data = request.get_json()
         new_appt = Appointment(
@@ -104,6 +104,7 @@ class Appointments(Resource):
     # user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     # car_id = db.Column(db.Integer, db.ForeignKey('cars.id'))
 api.add_resource(Appointments, '/appointments')
+
 class GetCurrent(Resource):
     def get(self):
         user_id = session.get('user_id')
@@ -152,7 +153,6 @@ class Logout(Resource):
 api.add_resource(Logout, '/logout')
 
 class MakeAppointmentLoggedIn(Resource):
-    
     def post(self):
         user_id = session.get('user_id')
         data = request.get_json()

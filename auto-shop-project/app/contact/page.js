@@ -18,7 +18,7 @@ export default function Contact() {
     <div className="container">
       <div id='contact-header' style={{height:"220px"}}>
       <h1 className="route-head">CONTACT US</h1>
-      <h1 style={{ color: "white" }}>
+      <h1 className='subtext'>
         QUESTIONS? (pricing, services, etc.)
         <br />
         FEEL FREE TO CONTACT US AT

@@ -34,6 +34,7 @@ body {
   box-shadow: 0 0 7px 7px rgba(255, 255, 255, 0.2);
 }
 .image-flex {
+  
   width: 100vw;
   display: flex;
   justify-content: space-evenly;
@@ -167,6 +168,8 @@ body {
   min-width: 100vw;
   text-align: center;
   min-height: calc(100vh - 70px);
+  color:white;
+  overflow-y:scroll;
 }
 .acc-container {
   font-family: "Oswald", sans-serif;
@@ -307,18 +310,29 @@ body {
 } */
 h2 {
   font-size: 30px;
-  margin-top: 10px;
   text-decoration: underline;
 }
 
 .appointment-BoxContainer {
+  text-align:center;
   display: flex;
   align-content: center;
   justify-content: space-evenly;
-  width: 300px;
   flex-wrap: wrap;
+  width: 100vw;
+  color:white;
 }
 .appointment-BoxContainer div {
-  text-align: left;
   margin-top: 20px;
+  /* width:100vw; */
+
+}
+
+.appointment-div{
+  padding:5px;
+  border:solid;
+  border-color:red;
+  width:30%;
+  margin:10px;
+  font-size: 18px;
 }

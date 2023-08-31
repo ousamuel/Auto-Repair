@@ -47,6 +47,7 @@ export default function RootLayout({ children }) {
         <nav className="navigation">
           <a href="/dashboard">HOME</a>
           <a href="/gallery">GALLERY</a>
+          <a href="/market">MARKET</a>
           <a href="/services">SERVICES</a>
           <a href="/appointment">APPOINTMENT</a>
           <a href="/contact">CONTACT US</a>
