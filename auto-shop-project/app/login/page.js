@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+
+
 export default function login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -30,8 +32,7 @@ export default function login() {
         SetUser(data);
       router.push('/account')
     }
-  }; 
-
+  }
 return (
     <>
     <div className="acc-container">
@@ -98,7 +99,7 @@ return (
               style={{ paddingLeft: "14px" }}
             />
           </div>
-          <button id="appt-button" href='/account' type="submit">
+          <button href='/login' id="appt-button" type="submit">
             LOG IN
           </button>
           <div>
@@ -113,3 +114,4 @@ return (
   </>
   );
 }
+

@@ -24,12 +24,13 @@ export default function RootLayout({ children }) {
           return response.json()
         } else {
           return null
+          
         };
       })
       .then(data => {setUser(data);
       console.log(data)})
-      if (user);
-  setLoading(true)
+      setLoading(true)
+
   }, []);
   
   return (
@@ -48,7 +49,7 @@ export default function RootLayout({ children }) {
           <a href="/services">SERVICES</a>
           <a href="/appointment">APPOINTMENT</a>
           <a href="/contact">CONTACT US</a>
-          {loading ? <a href='/account'>ACCOUNT</a> : <a href='/login'>ACCOUNT</a>}
+          {user ? <a href='/account'>ACCOUNT</a> : <a href='/login'>ACCOUNT</a>}
         </nav>
       </header>
       <div style={{paddingTop: "70px"}}/>
