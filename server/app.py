@@ -72,6 +72,8 @@ class Login(Resource):
         user = User.query.filter(User.email == email).first()
         if not user:
             return make_response({'error':'No user found with email'}, 401)
+        if user.email != email:
+            return make_response({"error":"Invalid email or password"})
         if user.password != password:
             return make_response({"error":"Invalid email or password"})
         if user.password == password and user.email == email:
@@ -118,6 +120,15 @@ class GetCurrent(Resource):
         
         user_dict = user.to_dict()
         return make_response(user_dict, 200)
+    def patch(self):
+        user_id = session.get('user_id')
+        user = User.query.get(user_id)
+        data = request.get_json()
+        for attr in data:
+            setattr(user, attr, data[attr])
+        db.session.add(user)
+        db.session.commit()
+        return make_response(user.to_dict(), 200)
 api.add_resource(GetCurrent, '/users/current')
 
 class Signup(Resource):
@@ -182,7 +193,6 @@ class MakeAppointmentLoggedIn(Resource):
         db.session.commit()
         return make_response(appointments.to_dict(), 200)
 api.add_resource(MakeAppointmentLoggedIn, '/LoggedInAppointments')
-
 
 if __name__ == "__main__":
     app.run(port=5555, debug = True )
