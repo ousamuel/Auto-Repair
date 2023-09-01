@@ -106,7 +106,7 @@ export const signup = () => {
               onChange={formik.handleChange}
             />
             </div>
-            {formik.errors.firstName && <p>{formik.errors.firstName}</p>}
+            {<p>{formik.errors.firstName}</p>}
             <div
             className="login-wrap"
             style={{

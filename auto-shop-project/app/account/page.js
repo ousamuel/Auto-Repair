@@ -1,7 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import dynamic from "next/dynamic";
 function Test() {
   const [user, setUser] = useState("");
   const [loading, setLoading] = useState(true);
@@ -30,7 +29,6 @@ function Test() {
       credentials: "include",
     }).then((data) => setUser(data));
   };
-  console.log(user.appointments)
   return (
     <div className="container">
       {loading ? (

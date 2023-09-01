@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 import { useFormik } from 'formik';
 import { useRouter } from "next/navigation";
+import * as yup from 'yup'
 export const signup = () => {
   const router = useRouter();
   const [user, SetUser] = useState('');
@@ -25,6 +26,13 @@ export const signup = () => {
         SetUser(json);
         router.push("/login");
   })};
+  const basicSchema = yup.object().shape({
+    firstName: yup.string().required('Please provide the first name').min(3,'3 characters minimum'),
+    lastName: yup.string().required('Please provide the last name').min(3,'3 characters minimum'),
+    email: yup.string().required('Please provide the email').min(3,'3 characters minimum'),
+    password: yup.string().required('Please provide the password').min(3,'3 characters minimum'),
+    phoneNumber: yup.string().required('Please Provide Phone Number').min(10,"Must be 10 digits").max(10, "This is over 10 digits")
+  })
   const formik = useFormik({
     initialValues: {
       firstName: '',
@@ -33,6 +41,7 @@ export const signup = () => {
       password:'',
       phoneNumber:''
   },
+    validationSchema: basicSchema,
     onSubmit,
   })
   return (
@@ -80,6 +89,7 @@ export const signup = () => {
               onChange={formik.handleChange}
             />
             </div>
+            {<p>{formik.errors.firstName}</p>}
             <div
             className="login-wrap"
             style={{
@@ -108,6 +118,7 @@ export const signup = () => {
               onChange={formik.handleChange}
             />
             </div>
+            {<p>{formik.errors.lastName}</p>}
             <div
             className="login-wrap"
             style={{
@@ -136,6 +147,7 @@ export const signup = () => {
               onChange={formik.handleChange}
             />
             </div>
+            {<p>{formik.errors.email}</p>}
             <div
             className="login-wrap"
             style={{
@@ -164,6 +176,7 @@ export const signup = () => {
               onChange={formik.handleChange}
             />
             </div>
+            {<p>{formik.errors.password}</p>}
             <div
             className="login-wrap"
             style={{
@@ -192,6 +205,7 @@ export const signup = () => {
               onChange={formik.handleChange}
             />
             </div>
+            <p>{formik.errors.phoneNumber}</p>
             <button id="appt-button" type="submit">Sign Up</button>
           </form>
         </div>

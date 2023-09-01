@@ -1,5 +1,6 @@
 "use client";
 import { useFormik } from "formik";
+import { Router } from "next/dist/client/router";
 import React, { useState, useEffect } from "react";
 
 export default function Appointment() {
@@ -10,7 +11,6 @@ export default function Appointment() {
   timeAhead = timeAhead.toISOString().slice(0, 10);
   const [user, setUser] = useState("");
   const [appts, setAppts] = useState([]);
-  const [test, setTest] = useState([]);
   useEffect(() => {
     const fetchUser = fetch("http://127.0.0.1:5555/users/current", {
       credentials: "include",
@@ -31,9 +31,6 @@ export default function Appointment() {
       }
     );
   }, []);
-  
-  // console.log(user)
-
   const onSubmit = () => {
     fetch("http://127.0.0.1:5555/LoggedInAppointments", {
       method: "POST",
@@ -58,6 +55,7 @@ export default function Appointment() {
         type_of_service: formik.values.service.join(", "),
       }),
     }).then((response) => response.json());
+      return alert('Appointment Made!')
   };
   const formik = useFormik({
     initialValues: {
