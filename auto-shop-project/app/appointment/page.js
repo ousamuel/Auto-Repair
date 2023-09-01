@@ -8,22 +8,32 @@ export default function Appointment() {
   timeAhead.setMonth(today.getMonth() + 2);
   today = today.toISOString().slice(0, 10);
   timeAhead = timeAhead.toISOString().slice(0, 10);
-  const [user, setUser] = useState('');
+  const [user, setUser] = useState("");
+  const [appts, setAppts] = useState([]);
+  const [test, setTest] = useState([]);
   useEffect(() => {
-      fetch('http://127.0.0.1:5555/users/current', {
-          credentials: 'include'
-      })
-      .then(response => {
-        if (response.ok) {
-          return response.json()
-        } else {
-          return null
-        };
-      })
-      .then(data => setUser(data))
-      .catch(error => console.error('Error fetching user data:', error));
+    const fetchUser = fetch("http://127.0.0.1:5555/users/current", {
+      credentials: "include",
+    })
+      .then((response) => (response.ok ? response.json() : null))
+      .catch((error) => console.error("Error fetching user data:", error));
+
+    const fetchAppts = fetch("http://127.0.0.1:5555/appointments")
+      .then((response) => (response.ok ? response.json() : null))
+      .catch((error) =>
+        console.error("Error fetching appointment data:", error)
+      );
+
+    Promise.all([fetchUser, fetchAppts]).then(
+      ([userData, apptData]) => {
+        setUser(userData);
+        setAppts(apptData);
+      }
+    );
   }, []);
   
+  // console.log(user)
+
   const onSubmit = () => {
     fetch("http://127.0.0.1:5555/LoggedInAppointments", {
       method: "POST",
@@ -45,11 +55,10 @@ export default function Appointment() {
         date: formik.values.date,
         time: formik.values.time,
         // It's creating an array so, we use a .join to seperate each one to a string! That's what a .join does look at db
-        type_of_service: formik.values.service.join(', ')
+        type_of_service: formik.values.service.join(", "),
       }),
-    })
-      .then((response) => response.json())
-};
+    }).then((response) => response.json());
+  };
   const formik = useFormik({
     initialValues: {
       firstName: "",
@@ -67,17 +76,17 @@ export default function Appointment() {
       notes: "",
     },
     onSubmit,
-    },
+  });
+  let takenTimes = []
+  if (appts) appts.filter(appt =>appt.date === formik.values.date).forEach(appt => takenTimes.push(appt.time))
+  console.log(takenTimes)
+  console.log(takenTimes.includes("12:00"))
 
-  )
-  
   return (
     <div
-
-      id='big'
-
+      id="big"
       style={{
-        height: "100vw",
+        minHeight: "100vw",
         paddingBottom: "60px",
         fontFamily: "'Oswald', sans-serif",
         backgroundImage: 'url("/images/tires.jpg")',
@@ -213,21 +222,22 @@ export default function Appointment() {
               onChange={formik.handleChange}
               value={formik.values.time}
             >
-              <option value="08:00">08:00 AM</option>
-              <option value="09:00">09:00 AM</option>
-              <option value="10:00">10:00 AM</option>
-              <option value="11:00">11:00 AM</option>
-              <option value="12:00">12:00 PM</option>
-              <option value="13:00">01:00 PM</option>
-              <option value="14:00">02:00 PM</option>
-              <option value="15:00">03:00 PM</option>
+              {takenTimes.includes("08:00") ? <option value="08:00" disabled style={{ textDecoration: 'line-through' }}>08:00 AM</option> : <option value="08:00">08:00 AM</option> }
+              {takenTimes.includes("09:00") ? <option value="09:00" disabled style={{ textDecoration: 'line-through' }}>09:00 PM</option> : <option value="09:00">09:00 AM</option> }
+              {takenTimes.includes("10:00") ? <option value="10:00" disabled style={{ textDecoration: 'line-through' }}>10:00 PM</option> : <option value="10:00">10:00 AM</option> }
+              {takenTimes.includes("11:00") ? <option value="11:00" disabled style={{ textDecoration: 'line-through' }}>11:00 PM</option> : <option value="11:00">11:00 AM</option> }
+              {takenTimes.includes("12:00") ? <option value="12:00" disabled style={{ textDecoration: 'line-through' }}>12:00 PM</option> : <option value="12:00">12:00 PM</option> }
+              {takenTimes.includes("13:00") ? <option value="13:00" disabled style={{ textDecoration: 'line-through' }}>01:00 PM</option> : <option value="13:00">01:00 PM</option> }
+              {takenTimes.includes("14:00") ? <option value="14:00" disabled style={{ textDecoration: 'line-through' }}>02:00 PM</option> : <option value="14:00">02:00 PM</option> }
+              {takenTimes.includes("15:00") ? <option value="15:00" disabled style={{ textDecoration: 'line-through' }}>03:00 PM</option> : <option value="15:00">03:00 PM</option> }
+              {takenTimes.includes("16:00") ? <option value="16:00" disabled style={{ textDecoration: 'line-through' }}>04:00 PM</option> : <option value="16:00">04:00 PM</option> }
             </select>
           </div>
         </div>
         <h1 className="contact-subheader">TYPE OF SERVICE</h1>
         <div className="submit-container">
-          <div className="submit-box" style={{display:"flex"}}>
-            <ul style={{ fontSize: "22px", width:"60%"}}>
+          <div className="submit-box" style={{ display: "flex" }}>
+            <ul style={{ fontSize: "22px", width: "60%" }}>
               <li>
                 <input
                   type="checkbox"
@@ -246,12 +256,12 @@ export default function Appointment() {
                   type="checkbox"
                   id="option2"
                   name="service"
-                  value="Brake Repair"
-                  checked={formik.values.service.includes("Brake Repair")}
+                  value="Brake/Brake Pad Replacement"
+                  checked={formik.values.service.includes("Brake/Brake Pad Replacement")}
                   onChange={formik.handleChange}
                 />
                 <label className="service-li" htmlFor="option2">
-                  Brake Repair
+                  Brake/Brake Pad Replacement
                 </label>
               </li>
               <li>
@@ -259,27 +269,25 @@ export default function Appointment() {
                   type="checkbox"
                   id="option3"
                   name="service"
-                  value="Paint Touch-up"
-                  checked={formik.values.service.includes("Paint Touch-up")}
+                  value="Tire & Rim Cleaning"
+                  checked={formik.values.service.includes("Tire & Rim Cleaning")}
                   onChange={formik.handleChange}
                 />
                 <label className="service-li" htmlFor="option3">
-                  Paint Touch-up
+                Tire & Rim Cleaning
                 </label>
               </li>
-            </ul>
-            <ul style={{ fontSize: "22px", width:"60%"}}>
               <li>
                 <input
                   type="checkbox"
                   id="option4"
                   name="service"
-                  value="Polish & Wax"
-                  checked={formik.values.service.includes("Polish & Wax")}
+                  value="Body Polishing"
+                  checked={formik.values.service.includes("Body Polishing")}
                   onChange={formik.handleChange}
                 />
                 <label className="service-li" htmlFor="option4">
-                  Polish & Wax
+                Body Polishing
                 </label>
               </li>
               <li>
@@ -300,12 +308,66 @@ export default function Appointment() {
                   type="checkbox"
                   id="option6"
                   name="service"
-                  value="Scratch Removal"
-                  checked={formik.values.service.includes("Scratch Removal")}
+                  value="Engine Bay Cleaning"
+                  checked={formik.values.service.includes("Engine Bay Cleaning")}
                   onChange={formik.handleChange}
                 />
                 <label className="service-li" htmlFor="option6">
-                  Scratch Removal
+                Engine Bay Cleaning
+                </label>
+              </li>
+            </ul>
+            <ul style={{ fontSize: "22px", width: "60%" }}>
+            <li>
+                <input
+                  type="checkbox"
+                  id="option7"
+                  name="service"
+                  value="Interior Surface Polishing"
+                  checked={formik.values.service.includes("Interior Surface Polishing")}
+                  onChange={formik.handleChange}
+                />
+                <label className="service-li" htmlFor="option7">
+                Interior Surface Polishing
+                </label>
+              </li>
+              <li>
+                <input
+                  type="checkbox"
+                  id="option8"
+                  name="service"
+                  value="Glass Cleaning"
+                  checked={formik.values.service.includes("Glass Cleaning")}
+                  onChange={formik.handleChange}
+                />
+                <label className="service-li" htmlFor="option8">
+                Glass Cleaning
+                </label>
+              </li>
+              <li>
+                <input
+                  type="checkbox"
+                  id="option9"
+                  name="service"
+                  value="Carpet Cleaning"
+                  checked={formik.values.service.includes("Carpet Cleaning")}
+                  onChange={formik.handleChange}
+                />
+                <label className="service-li" htmlFor="option9">
+                Carpet Cleaning
+                </label>
+              </li>
+              <li>
+                <input
+                  type="checkbox"
+                  id="option10"
+                  name="service"
+                  value="Waste Removal & Vacuuming"
+                  checked={formik.values.service.includes("Waste Removal & Vacuuming")}
+                  onChange={formik.handleChange}
+                />
+                <label className="service-li" htmlFor="option10">
+                Waste Removal & Vacuuming
                 </label>
               </li>
             </ul>
@@ -315,7 +377,7 @@ export default function Appointment() {
         <div className="submit-container">
           <div className="submit-box">
             <textarea
-              name='notes'
+              name="notes"
               id="message-box"
               type="text"
               value={formik.values.notes}
@@ -324,11 +386,15 @@ export default function Appointment() {
             />
           </div>
         </div>
-        {user ? <button id="appt-button" type="submit">
-          MAKE APPOINTMENT
-        </button> : <button id="appt-button" type="submit">
-          MAKE APPOINTMENT & SIGNUP
-        </button>}
+        {user ? (
+          <button id="appt-button" type="submit">
+            MAKE APPOINTMENT
+          </button>
+        ) : (
+          <button id="appt-button" type="submit">
+            MAKE APPOINTMENT & SIGNUP
+          </button>
+        )}
       </form>
     </div>
   );

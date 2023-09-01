@@ -83,6 +83,11 @@ class Login(Resource):
         
 api.add_resource(Login, '/login')
 class Appointments(Resource):
+    def get(self):
+        appts = Appointment.query.all()
+        appts_ser =[a.to_dict() for a in appts]
+        return make_response(appts_ser, 200)
+        
     def post(self):
         data = request.get_json()
         new_appt = Appointment(
