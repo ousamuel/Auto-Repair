@@ -4,25 +4,29 @@ import { useRouter } from "next/navigation";
 function Test() {
   const [user, setUser] = useState("");
   const [loading, setLoading] = useState(true);
+  const [myCars, setMyCars] = useState([]);
   const router = useRouter();
   useEffect(() => {
     fetch("http://127.0.0.1:5555/users/current", {
       credentials: "include",
     })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          return null;
-        }
-      })
+      .then((response) => (response.ok ? response.json() : null))
+
       .then((data) => {
         setUser(data);
         setLoading(false);
-        console.log(data);
+        fetchCars(data.id);
+        console.log(data.id);
       });
   }, [router]);
-
+  const fetchCars = (id) => {
+    fetch(`http://127.0.0.1:5555/carsbyuser/${id}`, { credentials: "include" })
+      .then((response) => (response.ok ? response.json() : null))
+      .then((data) => {
+        setMyCars(data);
+        console.log(data);
+      });
+  };
   const handleClick = () => {
     fetch("http://127.0.0.1:5555/logout", {
       method: "DELETE",
@@ -37,7 +41,22 @@ function Test() {
         <div style={{ width: "100%" }}>
           {user ? (
             <div>
-              <h2 className='route-head'>{user.first_name}'s Appointments</h2>
+              <h2 className="route-head">MY GARAGE</h2>
+              <div id="user-cars" className="appointment-BoxContainer">
+                {myCars ? (
+                  myCars.map((car) => {
+                    return (
+                      <div key={car.plate_number} className="appointment-div">
+                        {car.make} {car.model} 
+                        {car.year} {car.plate_number}
+                      </div>
+                    );
+                  })
+                ) : (
+                  <div>Loading ... </div>
+                )}
+              </div>
+              <h2 className="route-head">MY APPOINTMENTS</h2>
               <div className="appointment-BoxContainer">
                 {user.appointments ? (
                   user.appointments.map((appt) => {
@@ -52,7 +71,7 @@ function Test() {
                         LICENSE: {appt.car.plate_number}
                         <br />
                         Type of Service: {appt.type_of_service}
-                        </div>
+                      </div>
                     );
                   })
                 ) : (

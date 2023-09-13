@@ -54,7 +54,8 @@ body {
 .contact-subheader {
   font-size: 23px;
   background-color: rgb(188, 185, 185);
-  width: 400px;
+  width:65%;
+  max-width: 400px;
   height: 37px;
   margin: auto;
   border-radius: 4px;
@@ -63,6 +64,7 @@ body {
   background-color: gray;
   width: 75vw;
   margin: auto;
+  height:100%;
   border-radius: 5px;
   text-align: center;
   color: black;
@@ -100,7 +102,16 @@ body {
   /* border-radius:5px; */
   border:solid;
   border-color: rgb(169, 169, 169);
-
+}
+.signup-wrap{
+  height:45px;
+  width:60%;
+  display:inline-flex;
+  background-color: rgb(76, 76, 76);
+  border-radius:5px;
+  border:solid;
+  border-color: rgb(169, 169, 169);
+  margin-top:15px;
 }
 .submit-container {
   /* text-align:center; */
@@ -115,7 +126,7 @@ body {
 .submit-box {
   color: black;
   font-size: 19px;
-  width: calc(100% * (1 / 2) - 10px - 1px);
+  width: 50%;
   padding: 15px;
   /* border:solid; */
   border-color: red;
@@ -131,8 +142,12 @@ body {
   padding-left: 7px;
   font-size: 15px;
 }
+.service-list-appt{
+  width:50%
+}
 #message-box {
-  width: 400px;
+  width: 100%;
+  max-width:400px;
   border-radius: 5px;
   background-color: rgb(230, 230, 230);
   font-size: 14px;

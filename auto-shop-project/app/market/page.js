@@ -25,7 +25,7 @@ export default function Market(){
   return (
     <div className="container">
       <h1 className='route-head'>MARKET</h1>
-      <p className='subtext'>QUALITY USED CARS <br/> CONTACT US AT DARRENSAUTODETAIL@GMAIL.COM WITH ANY QUESTIONS OR OFFERS</p>
+      <p className='subtext'>QUALITY USED CARS <br/> CONTACT US AT DARRENSDETAILSHOP@GMAIL.COM WITH ANY QUESTIONS OR OFFERS</p>
       <div className='image-flex'>
       {image_divs}
       </div>

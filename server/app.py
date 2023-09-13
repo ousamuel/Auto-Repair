@@ -47,7 +47,12 @@ class Cars(Resource):
         cars_ser =[car.to_dict() for car in cars]
         return make_response(cars_ser, 200)
 api.add_resource(Cars, '/cars')
-
+class CarsByUserId(Resource):
+    def get(self, id):
+        cars = Car.query.filter(Car.user_id == id)
+        cars_ser=[car.to_dict(rules=('-appointments',)) for car in cars]
+        return make_response(cars_ser,200)
+api.add_resource(CarsByUserId, '/carsbyuser/<int:id>')
 class Register(Resource):
     def post(self):
         data = request.get_json()
@@ -104,7 +109,12 @@ class Appointments(Resource):
     # user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     # car_id = db.Column(db.Integer, db.ForeignKey('cars.id'))
 api.add_resource(Appointments, '/appointments')
-
+class AppointmentById(Resource):
+    def delete(self, id):
+        appt = Appointment.query.filter(Appointment.id == id).one_or_none()
+        if not appt:
+            return make_response({"error":"appt not found"}, 404)
+    d
 class GetCurrent(Resource):
     def get(self):
         user_id = session.get('user_id')

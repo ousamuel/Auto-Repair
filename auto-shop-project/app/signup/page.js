@@ -28,7 +28,7 @@ export const signup = () => {
   })};
   const basicSchema = yup.object().shape({
     firstName: yup.string().required('Please provide the first name').min(3,'3 characters minimum'),
-    lastName: yup.string().required('Please provide the last name').min(3,'3 characters minimum'),
+    lastName: yup.string().required('Please provide the last name').min(1,'1 character minimum'),
     email: yup.string().required('Please provide the email').min(3,'3 characters minimum'),
     password: yup.string().required('Please provide the password').min(3,'3 characters minimum'),
     phoneNumber: yup.string().required('Please Provide Phone Number').min(10,"Must be 10 digits").max(10, "This is over 10 digits")
@@ -62,13 +62,8 @@ export const signup = () => {
               alt="Logo"
             />
             <div
-            className="login-wrap"
-            style={{
-              marginTop: "20px",
-              borderTopLeftRadius: "7px",
-              borderTopRightRadius: "7px",
-              borderBottom: "none",
-            }}
+            className="signup-wrap"
+            
           >
             <img
               style={{
@@ -91,13 +86,8 @@ export const signup = () => {
             </div>
             {<p>{formik.errors.firstName}</p>}
             <div
-            className="login-wrap"
-            style={{
-              marginTop: "20px",
-              borderTopLeftRadius: "7px",
-              borderTopRightRadius: "7px",
-              borderBottom: "none",
-            }}
+            className="signup-wrap"
+            
           >
             <img
               style={{
@@ -120,13 +110,7 @@ export const signup = () => {
             </div>
             {<p>{formik.errors.lastName}</p>}
             <div
-            className="login-wrap"
-            style={{
-              marginTop: "20px",
-              borderTopLeftRadius: "7px",
-              borderTopRightRadius: "7px",
-              borderBottom: "none",
-            }}
+            className="signup-wrap"
           >
             <img
               style={{
@@ -149,13 +133,7 @@ export const signup = () => {
             </div>
             {<p>{formik.errors.email}</p>}
             <div
-            className="login-wrap"
-            style={{
-              marginTop: "20px",
-              borderTopLeftRadius: "7px",
-              borderTopRightRadius: "7px",
-              borderBottom: "none",
-            }}
+            className="signup-wrap"
           >
             <img
               style={{
@@ -178,13 +156,8 @@ export const signup = () => {
             </div>
             {<p>{formik.errors.password}</p>}
             <div
-            className="login-wrap"
-            style={{
-              marginTop: "20px",
-              borderTopLeftRadius: "7px",
-              borderTopRightRadius: "7px",
-              borderBottom: "none",
-            }}
+            className="signup-wrap"
+            
           >
             <img
               style={{

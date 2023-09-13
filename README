@@ -2,7 +2,8 @@ README
 To set up and clone this repo:
 1. git clone 
 2. run bash setup.sh to install all required dependecies
-3. run python app.py to run flask api
+3. run python server/app.py to run flask api
+4. run npm install inside of auto-shop-project directory
 4. run npm run dev inside of auto-shop-project directory to run react frontend
 
 
